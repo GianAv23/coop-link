@@ -48,6 +48,26 @@ body {
 @media (max-width: 640px) {
     .content{
         background-image: url('/coop-link/images/TOPO\ BG\ mobile.png');
+        background-position: bottom;
+        background-size: cover;
+    }
+    
+}
+@media (min-width: 641px){
+    .wajib{
+        .amount{
+            font-size: 55px;
+        }
+    }
+
+    .sukarela{
+        .amount{
+            font-size: 55px;
+        }
+    }
+
+    .balance{
+        background-image: url('/coop-link/images/bg\ hijau.png');
         background-position: center;
         background-size: cover;
     }

@@ -14,8 +14,7 @@
                 colors: {
                     bgColor: "#141A12",
                     bgLogo: "#9FED81",
-                    cardData: "#EEEEEE",
-                    editBtn: "#161E31",
+                    cardData: "#282828",
                     textColor2: "#9FED81",
                 },
             }

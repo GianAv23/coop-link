@@ -70,9 +70,9 @@
                         <!-- INI YANG DI LOOP PID -->
                         <div
                             class="bg-cardData/50 rounded-3xl border border-bgWhite flex flex-col p-4 backdrop-blur-md">
-                            <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center">
 
-                                <div class="flex flex-col gap-0">
+                                <div class="flex flex-col gap-0 md:justify-center">
                                     <span class="font-semibold text-bgWhite text-lg">
                                         value nama nasabah
                                     </span>
@@ -82,28 +82,35 @@
                                     <span class="font-normal text-bgWhite text-sm">
                                         value tanggal pembayaran | value alamat
                                     </span>
-                                    <span class="font-semibold text-bgWhite text-lg pt-4">
-                                        value nominal pembayaran
-                                    </span>
+
                                 </div>
 
-                                <div class="mt-6 flex flex-row justify-between md:gap-10 md:pb-4">
-                                    <button class="rounded-xl bg-bgColor border border-textColor2 px-4 py-1">
-                                        <span class="font-medium text-textColor2 text-xs md:text-sm">Transfer
-                                            Proof</span>
-                                    </button>
+                                <div class="flex flex-col">
 
-                                    <div class="flex flex-row gap-2">
-                                        <button class="rounded-xl bg-bgLogo px-4 py-1">
-                                            <span class="font-medium text-bgColor text-xs md:text-sm">Accept</span>
-                                        </button>
-
-
-                                        <button class="rounded-xl border border-textColor2 px-4 py-1">
-                                            <span class="font-medium text-bgWhite text-xs md:text-sm">Reject</span>
-                                        </button>
+                                    <div class="flex flex-row md:justify-end">
+                                        <span class="font-semibold text-bgWhite text-lg pt-4 md:pt-0">
+                                            value nominal pembayaran
+                                        </span>
                                     </div>
 
+                                    <div class="flex flex-row justify-between mt-6 md:gap-12 ">
+                                        <button class="rounded-xl bg-bgColor border border-textColor2 px-4 py-1">
+                                            <span class="font-medium text-textColor2 text-xs md:text-sm">Transfer
+                                                Proof</span>
+                                        </button>
+
+                                        <div class="flex flex-row gap-2">
+                                            <button class="rounded-xl bg-bgLogo px-4 py-1">
+                                                <span class="font-medium text-bgColor text-xs md:text-sm">Accept</span>
+                                            </button>
+
+
+                                            <button class="rounded-xl border border-textColor2 px-4 py-1">
+                                                <span class="font-medium text-bgWhite text-xs md:text-sm">Reject</span>
+                                            </button>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>

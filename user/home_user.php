@@ -27,7 +27,7 @@
 
 <body>
 
-    <div class="w-screen min-h-screen px-10">
+    <div class="w-screen min-h-screen px-10 pb-10">
 
         <!-- NAVBAR START -->
         <div class="sticky top-0 bg-black/30 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
@@ -62,7 +62,7 @@
                     </form>
                 </div>
             </div>
-            <!-- LOG OUT BUTTON END -->
+            <!-- PROFIL BUTTON END -->
 
             <div class="flex items-center justify-start">
                 <span class="text-white font-semibold text-xl">
@@ -81,6 +81,8 @@
             </div>
         </div>
         <!-- NAVBAR END -->
+
+        <!-- CONTENT START -->
 
         <div class="content rounded-xl border-2 text-white">
 
@@ -146,6 +148,8 @@
                 <span>© 2024 | UTS Web Programming LEC</span>
             </footer> -->
         </div>
+
+        <!-- CONTENT END -->
     </div>
 
     <script>

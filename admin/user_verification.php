@@ -1,3 +1,20 @@
+<?php
+require_once '../dbCOOPLINK.php';
+$var = show_Register(0);
+if( isset($_POST["acc"]) ){
+    acc_Register(true, $_POST["acc"]);
+    header("Location: user_verification.php");
+    exit;
+}
+
+if( isset($_POST["del"]) ){
+    acc_Register(false, $_POST["del"]);
+    header("Location: user_verification.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +76,8 @@
                         <!-- untuk kembali ke home -->
                         <button
                             class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center"><span
-                                class="font-medium text-base">
+                                class="font-medium text-base" onclick="window.location.href='home_admin.php'"> 
+                                <!-- on click buat back ke halaman home -->
                                 < Back </span></button>
                         <span class="font-normal text-bgWhite text-lg lg:text-2xl">User Registration
                             <span class="text-textColor2 font-bold">Verification</span></span>
@@ -69,42 +87,47 @@
                     <div class="h-[600px] flex-grow overflow-y-scroll flex flex-col gap-4">
 
                         <!-- INI YANG DI LOOP PID -->
+                        <?php foreach($var as $v) : ?>
                         <div
                             class="bg-cardData/50 rounded-3xl border border-bgWhite flex flex-col p-4 backdrop-blur-md">
                             <div class="flex flex-col md:flex-row md:justify-between md:items-start">
 
                                 <div class="flex flex-col gap-0">
                                     <span class="font-semibold text-bgWhite text-lg">
-                                        value nama nasabah
+                                        <?= $v["namaRegis"] ?><!-- value nama nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm text-textColor2">
-                                        value email nasabah
+                                        <?= $v["emailRegis"] ?><!-- value email nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm">
-                                        value tanggal pembayaran | value alamat
+                                        <?= $v["birtDRegis"] . " | " . $v["alamRegis"] ?><!-- value tanggal pembayaran | value alamat -->
                                     </span>
                                 </div>
 
                                 <div class="mt-6 flex flex-row justify-between md:gap-10 md:pb-4">
                                     <button class="rounded-xl bg-bgColor border border-textColor2 px-4 py-1">
-                                        <span class="font-medium text-textColor2 text-xs md:text-sm">Transfer
-                                            Proof</span>
+                                        <span class="font-medium text-textColor2 text-xs md:text-sm">
+                                            <?php $v["filebayarRegis"] ?>
+                                        </span>
                                     </button>
 
                                     <div class="flex flex-row gap-2">
-                                        <button class="rounded-xl bg-bgLogo px-4 py-1">
-                                            <span class="font-medium text-bgColor text-xs md:text-sm">Accept</span>
-                                        </button>
-
-
-                                        <button class="rounded-xl border border-textColor2 px-4 py-1">
-                                            <span class="font-medium text-bgWhite text-xs md:text-sm">Reject</span>
-                                        </button>
+                                        <form action="" method="post">
+                                            <button class="rounded-xl bg-bgLogo px-4 py-1" type="submit" name="acc" value="<?= $v["regisID"] ?>">
+                                                <span class="font-medium text-bgColor text-xs md:text-sm">Accept</span>
+                                            </button>
+    
+    
+                                            <button class="rounded-xl border border-textColor2 px-4 py-1" type="submit" name="del" value="<?= $v["regisID"] ?>">
+                                                <span class="font-medium text-bgWhite text-xs md:text-sm">Reject</span>
+                                            </button>
+                                        </form>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
+                        <?php endforeach; ?>
                         <!-- INI YANG DI LOOP PID -->
                     </div>
                 </div>

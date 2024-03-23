@@ -1,3 +1,15 @@
+<?php
+require_once '../dbCOOPLINK.php';
+$var = info_Nasabah();
+
+if( isset($_POST["logout"]) ){
+    session_destroy();
+    header("Location: login_form.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,30 +48,39 @@
             <div class="mt-1 p-3 absolute max-h-0 right-0 top-14" id="subModal" style="display:none ;">
 
                 <div class="modalProfile bg-bgLogo backdrop-blur-lg rounded-xl p-4 items-center">
-                    <form class="flex flex-col gap-4" method="post">
+                    <div class="flex flex-col gap-4">
                         <div class="flex flex-col gap-2 items-start">
                             <div class="rounded-full w-12 h-12 bg-white bg-center bg-cover"
                                 style="background-image: url(<?= "foto path nasabah pid"?>);">
                             </div>
 
-                            <span class="font-semibold text-bgColor">value nama nasabah</span>
+                            <span class="font-semibold text-bgColor"><?= $var["namaUser"] ?></span>
                         </div>
 
-                        <button class="flex flex-row justify-between">
-                            <span class="text-bgColor">View Profile</span>
-                            <span class="text-bgColor">></span>
-                        </button>
+                        <form action="edit_profile.php" method="post">
+                            <button class="flex flex-row justify-between" type="submit">
+                                <span class="text-bgColor">View Profile</span>
+                                <span class="text-bgColor">></span>
+                            </button>
+                        </form>
 
-                        <button class="flex flex-row justify-between">
-                            <span class="text-bgColor">Change Password</span>
-                            <span class="text-bgColor">></span>
-                        </button>
+                        <form action="change_pass.php" method="post">
+                            <button class="flex flex-row justify-between" type="submit" name="changePassw">
+                                <span class="text-bgColor">Change Password</span>
+                                <span class="text-bgColor">></span>
+                            </button>
+                        </form>
 
-                        <button class="bg-bgColor/80 rounded-full border-2 border-dashed border-cardData/50 px-3 py-2"
+                        <form action="" method="post">
+                            <button class="bg-bgColor/80 rounded-full border-2 border-dashed border-cardData/50 px-3 py-2"
                             type="submit" name="logout">
-                            <span class="text-bgWhite font-semibold text-sm">Log
-                                Out</span></button>
-                    </form>
+                            <span class="text-bgWhite font-semibold text-sm">
+                                Log Out
+                            </span>
+                            </button>
+                        </form>
+                        
+                    </div>
                 </div>
             </div>
             <!-- PROFIL BUTTON END -->
@@ -73,7 +94,7 @@
             <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center cursor-pointer"
                 onclick="toogleModal()">
                 <span class="text-white font-semibold ml-5">
-                    value nama nasabah
+                    <?= $var["namaUser"] ?><!-- value nama nasabah -->
                 </span>
                 <div class="ml-3 w-7 h-7 rounded-full border border-bgWhite bg-cover bg-center"
                     style="background-image: url(<?= "foto path nasabah pid"?>);">
@@ -88,8 +109,13 @@
 
             <div class="flex flex-row justify-between items-center">
                 <div class="user mt-4 ms-4 sm:ms-10 sm:mt-10 sm:text-3xl">Hi, Xiao Dylan LTD.</div>
-                <button
-                    class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-3xl">History</button>
+                <form action="history_user.php" method="post">
+                    <button
+                    class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-3xl" type="submit" name="history">
+                    History
+                    </button>
+                </form>
+                
             </div>
 
             <div class="pokok flex justify-end me-4 mt-10 sm:mt-3 sm:me-10">
@@ -98,7 +124,9 @@
                         <span>Tabungan</span>
                         <span class="font-bold">Pokok</span>
                     </div>
-                    <div class="amount text-2xl sm:text-7xl sm:font-bold mt-2">Rp 4.000.000</div>
+                    <div class="amount text-2xl sm:text-7xl sm:font-bold mt-2">
+                        <?= $var["simpananPokok"] ?>
+                    </div>
                 </div>
             </div>
             <div class="web sm:flex sm:mt-5">
@@ -111,7 +139,9 @@
                             <span>Tabungan</span>
                             <span class="font-bold">Wajib</span>
                         </div>
-                        <div class="amount mt-2 sm:mt-0 sm:font-bold">Rp 10.000.000</div>
+                        <div class="amount mt-2 sm:mt-0 sm:font-bold">
+                            <?= $var["simpananWajib"] ?>
+                        </div>
                     </div>
                 </div>
                 <div class="sukarela rounded-xl border mt-4 mx-4 sm:w-full">
@@ -123,7 +153,9 @@
                             <span>Tabungan</span>
                             <span class="font-bold">Sukarela</span>
                         </div>
-                        <div class="amount mt-2 sm:mt-0 sm:font-bold">Rp 10.000.000</div>
+                        <div class="amount mt-2 sm:mt-0 sm:font-bold">
+                            <?= $var["simpananSukaRela"] ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -136,10 +168,13 @@
                         sudah banyak
                         )</span>
                 </div>
-                <button
-                    class="text-black font-bold rounded-2xl p-2 mb-8 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">Add
-                    Balance
-                </button>
+                <form action="payment_form.php" method="post">
+                    <button
+                    class="text-black font-bold rounded-2xl p-2 mb-8 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto" type="submit" name="addBalance">
+                    Add Balance
+                    </button>
+                </form>
+               
             </div>
 
 

@@ -1,3 +1,19 @@
+<?php
+require_once '../dbCOOPLINK.php';
+$var = verifi_Bayar();
+if( isset($_POST["acc"]) ){
+    acc_Bayar(true, $_POST["acc"]);
+    header("Location: payment_verification.php");
+    exit;
+}
+
+if( isset($_POST["del"]) ){
+    acc_Bayar(false, $_POST["del"]);
+    header("Location: payment_verification.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,9 +74,11 @@
                     <div class="mb-3 flex items-center gap-4">
                         <!-- untuk kembali ke home -->
                         <button
-                            class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center"><span
-                                class="font-medium text-base">
-                                < Back </span></button>
+                            class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center" onclick="window.location.href='home_admin.php'"><span
+                                class="font-medium text-base" >
+                                <!-- on click buat back ke halaman home -->
+                                < Back 
+                            </span></button>
                         <span class="font-normal text-bgWhite text-lg lg:text-2xl">User Registration
                             <span class="text-textColor2 font-bold">Verification</span></span>
                     </div>
@@ -69,19 +87,20 @@
                     <div class="h-[600px] flex-grow overflow-y-scroll flex flex-col gap-4">
 
                         <!-- INI YANG DI LOOP PID -->
+                        <?php foreach($var as $v) : ?>
                         <div
                             class="bg-cardData/50 rounded-3xl border border-bgWhite flex flex-col p-4 backdrop-blur-md">
                             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
 
                                 <div class="flex flex-col gap-0 md:justify-center">
                                     <span class="font-semibold text-bgWhite text-lg">
-                                        value nama nasabah
+                                        <?= $v["namaUser"] ?><!-- value nama nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm text-textColor2">
-                                        value email nasabah
+                                        <?= $v["emailUser"] ?><!-- value email nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm">
-                                        value tanggal pembayaran | value alamat
+                                        <?= $v["tanggalTf"] . " | " . $v["alamat"] ?><!-- value tanggal pembayaran | value alamat -->
                                     </span>
 
                                 </div>
@@ -90,31 +109,34 @@
 
                                     <div class="flex flex-row md:justify-end">
                                         <span class="font-semibold text-bgWhite text-lg pt-4 md:pt-0">
-                                            value nominal pembayaran
+                                            <?= $v["jmlhTf"] ?><!-- value nominal pembayaran -->
                                         </span>
                                     </div>
 
                                     <div class="flex flex-row justify-between mt-6 md:gap-12 ">
                                         <button class="rounded-xl bg-bgColor border border-textColor2 px-4 py-1">
-                                            <span class="font-medium text-textColor2 text-xs md:text-sm">Transfer
-                                                Proof</span>
+                                            <span class="font-medium text-textColor2 text-xs md:text-sm">
+                                                <?= $v["buktiTf"] ?><!-- Transfer Proof -->
+                                            </span>
                                         </button>
 
                                         <div class="flex flex-row gap-2">
-                                            <button class="rounded-xl bg-bgLogo px-4 py-1">
-                                                <span class="font-medium text-bgColor text-xs md:text-sm">Accept</span>
-                                            </button>
-
-
-                                            <button class="rounded-xl border border-textColor2 px-4 py-1">
-                                                <span class="font-medium text-bgWhite text-xs md:text-sm">Reject</span>
-                                            </button>
+                                            <form action="" method="post">
+                                                <button class="rounded-xl bg-bgLogo px-4 py-1" type="submit" name="acc" value="<?= $v["tfID"] ?>">
+                                                    <span class="font-medium text-bgColor text-xs md:text-sm">Accept</span>
+                                                </button>
+    
+                                                <button class="rounded-xl border border-textColor2 px-4 py-1" type="submit" name="del" value="<?= $v["tfID"] ?>">
+                                                    <span class="font-medium text-bgWhite text-xs md:text-sm">Reject</span>
+                                                </button>
+                                            </form>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php endforeach; ?>
                         <!-- INI YANG DI LOOP PID -->
                     </div>
                 </div>

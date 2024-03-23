@@ -1,3 +1,27 @@
+<?php
+require_once '../dbCOOPLINK.php';
+
+if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) && isset($_POST["email"]) && isset($_POST["address"]) && isset($_POST["birthday"]) && isset($_POST["gender"]) ){
+
+    if( $_POST["passw1"] === $_POST["passw2"] ){
+
+        if( registrasi_Nasabah($_POST["email"], $_POST["name"], $_POST["passw1"], $_POST["address"], $_POST["gender"], $_POST["birthday"], 
+        "FILE PATH FILE BAYAR", "FILE PATH FOTO PROFIL", 900) ){ //INI MASUKIN AJA SESUAI AMA FILE NYA PAKAI DALAM BENTUK VARIABEL.  UNTUK UANG POKOK SIMPANAN JUGA TAR UBAH PAKEE POST, ITU GW SET 900 DULU BUAT COBA-COBA
+            header("Location: login_form.php");
+            exit;
+        } else {
+            header("Location: signup_form.php");
+            exit;
+        }
+
+    } else {
+        header("Location: signup_form.php");
+        exit;
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -153,7 +177,7 @@
 
                     <div>
 
-                        <input type="date" name="address" id="alamat" placeholder="Enter your email"
+                        <input type="date" name="birthday" id="alamat" placeholder="Enter your email"
                             class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                     </div>
                 </div>
@@ -189,9 +213,13 @@
 
                 <!-- BUTTON START -->
                 <div class="flex flex-row">
-                    <button class="w-full shadow bg-textColor2 py-2 px-4 rounded-full" type="submit" name="submit">
-                        <span class="text-textColor font-bold">Sign Up</span>
-                    </button>
+
+                    <form action="login_form.php">
+                        <!-- LINK KE LOGIN KARENA MASIH HARUS DI ACC -->
+                        <button class="w-full shadow bg-textColor2 py-2 px-4 rounded-full" type="submit" name="submit">
+                            <span class="text-textColor font-bold">Sign Up</span>
+                        </button>
+                    </form>
 
                 </div>
                 <!-- BUTTON END -->

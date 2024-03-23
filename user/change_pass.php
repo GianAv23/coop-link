@@ -1,3 +1,27 @@
+<?php
+require_once '../dbCOOPLINK.php';
+
+if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"]) && isset($_POST["confirpass"]) ){
+
+    if( $_POST["newpass"] === $_POST["confirpass"] ){
+
+        if( change_User_Pass($_POST["newpass"]) ){
+            header("Location: login_form.php");
+            exit;
+        } else {
+            header("Location: change_pass.php");
+            exit;
+        }
+        
+    } else {
+        header("Location: change_pass.php");
+        exit;
+    }
+    
+} 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +67,7 @@
             </div>
             <!-- HEADER END -->
 
-            <form class="flex flex-col gap-6 md:px-44 lg:px-64 xl:px-80" method="post">
+            <form class="flex flex-col gap-6 md:px-44 lg:px-64 xl:px-80" method="post" action="">
 
                 <!-- USERNAME START -->
                 <div class=" flex flex-col gap-1">

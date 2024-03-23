@@ -26,10 +26,10 @@
 </head>
 
 <body>
-    <div class="bg-bgBlack w-screen min-h-screen px-10 overflow-hidden">
+    <div class="bg-bgBlack w-screen min-h-screen overflow-hidden">
 
         <!-- NAVBAR START -->
-        <div class="flex flex-row px-10 justify-between pt-10">
+        <div class="flex flex-row px-10 justify-between pt-8">
             <div class="flex items-center justify-start">
                 <span class="text-white font-semibold text-xl">
                     Coop<span class="text-textColor2">Link</span>
@@ -57,9 +57,10 @@
                 <div class="flex flex-col p-6 gap-4 shrink-0">
                     <div class="mb-3 flex items-center gap-4">
                         <!-- untuk kembali ke home -->
-                        <button class="rounded-full w-8 h-8 bg-bgLogo p-2 flex items-center justify-center"><span
-                                class="font-bold text-xl">
-                                < </span></button>
+                        <button
+                            class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center"><span
+                                class="font-medium text-base">
+                                < Back </span></button>
                         <span class="font-normal text-bgWhite text-lg lg:text-2xl">User Registration
                             <span class="text-textColor2 font-bold">Verification</span></span>
                     </div>

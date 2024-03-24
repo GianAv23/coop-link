@@ -1,6 +1,12 @@
 <?php
 require_once '../dbCOOPLINK.php';
-$var = show_Register(0);
+
+if( !isset($_SESSION["adminID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+    header("Location: login_form.php");
+    exit;
+}
+
+$var = show_Register(0); // 0 untuk indikasi nampilin semua user yang mau di acc atau reject
 if( isset($_POST["acc"]) ){
     acc_Register(true, $_POST["acc"]);
     header("Location: user_verification.php");

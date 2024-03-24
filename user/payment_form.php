@@ -1,8 +1,21 @@
 <?php
 require_once '../dbCOOPLINK.php';
 
+if( !isset($_SESSION["nasabahID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+    header("Location: login_form.php");
+    exit;
+}
+
 if( isset($_POST["kategori_simpanan"]) && isset($_POST["tgl_pembayaran"]) && isset($_POST["amount"]) ){
-    if( pembayaran_Nasabah( $_POST["kategori_simpanan"], $_POST["tgl_pembayaran"], $_POST["amount"], "MASUKIN FILE PATHNYA BUKTI TRANSFER" ) ){ // <-- TARUH AJA VARIABEL FILE PATH BUKTI TRANSFER NYA DISITU GIAN
+
+    $file_path_bukti_bayar = foto_Path("BUKTI_TRANSFER");
+
+    if( $file_path_bukti_bayar === "Error" ){ //KALO ADA ERROR JALANIN KODE INI
+        header("Location: payment_form.php");
+        exit;
+    }
+
+    if( pembayaran_Nasabah( $_POST["kategori_simpanan"], $_POST["tgl_pembayaran"], $_POST["amount"], "MASUKIN FILE PATHNYA BUKTI TRANSFER" ) ){ 
         header("Location: home_user.php");
         exit;
     } else {

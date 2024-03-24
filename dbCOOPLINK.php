@@ -48,6 +48,9 @@ function cek_Nasabah($name, $pass){
 function change_User_Pass($newPass){
     global $kunci;
     $newPass = strval($newPass);
+    if( $newPass < 8 ){
+        return false;
+    }
     $id = $_SESSION["nasabahID"];
     $sql_CHANGE_PASSWORD = "UPDATE users SET passwordUser = ? WHERE userID = ?";
     $queryRes = $kunci->prepare($sql_CHANGE_PASSWORD);
@@ -75,7 +78,10 @@ function registrasi_Nasabah($email, $name, $pass, $address, $gender, $birthDay, 
     $potoPropil = strval($potoPropil);
     $simpananPokok = intval($simpananPokok);
     if( $simpananPokok <= 0 ){
-        return false;
+        return "Simpanan Pokok tidak boleh nol";
+    }
+    if( strlen($pass) < 8 ){
+        return "Password minimal 8 karakter";
     }
     switch($gender){
         case 'male':
@@ -86,8 +92,15 @@ function registrasi_Nasabah($email, $name, $pass, $address, $gender, $birthDay, 
             break;
     }
 
-    if( $name === "" && $pass === "" && $address === "" && $birthDay === '' && $fileBayar === '' && $email === ''){
-        return false;
+    if( $fileBayar === "Error" ){
+        return "File bayar Error";
+    }
+    if( $potoPropil === "Error" ){
+        return "File foto profile Error";
+    }
+
+    if( $name === "" && $address === "" && $birthDay === '' && $email === ''){
+        return "Lengkapi datanya";
     }
 
     global $kunci;
@@ -95,7 +108,7 @@ function registrasi_Nasabah($email, $name, $pass, $address, $gender, $birthDay, 
                                 VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $queryRes = $kunci->prepare($sql_INSERT_REGISTRASI);
     $queryRes-> execute([$email, $name, $pass, $address, $gender, $birthDay, $fileBayar, $simpananPokok, $potoPropil]);
-    return true;
+    return "Berhasil";
 }
 
 function show_Register($id){
@@ -234,6 +247,7 @@ function pembayaran_Nasabah($kategori, $tanggal, $jumlah, $bukti){
     $jumlah = intval($jumlah);
     $kategori = strval($kategori);
     $tanggal = strval($tanggal);
+    $bukti = strval($bukti);
     switch($kategori){
         case 'wajib':
             $kategori = 'Wajib';
@@ -248,11 +262,12 @@ function pembayaran_Nasabah($kategori, $tanggal, $jumlah, $bukti){
     return true;
 }
 
-function edit_Profile($name, $email, $address, $gender, $birthDay){
+function edit_Profile($name, $email, $address, $gender, $birthDay, $fotoPath){
     $name = strval($name);
     $email = strval($email);
     $gender = strval($gender);
     $birthDay = strval($birthDay);
+    $fotoPath = strval($fotoPath);
     global $kunci;
     $id = $_SESSION["nasabahID"];
     switch($gender){
@@ -263,8 +278,33 @@ function edit_Profile($name, $email, $address, $gender, $birthDay){
             $gender = "Wanita";
             break;
     }
-    $sql_EDIT_PROFILE = "UPDATE users SET namaUser = ?, emailUser = ?, alamat = ?, kelamin = ?, tanggalLahir = ? WHERE userID = $id ";
+    $sql_EDIT_PROFILE = "UPDATE users SET namaUser = ?, emailUser = ?, alamat = ?, kelamin = ?, tanggalLahir = ?, fotoProfil = ? WHERE userID = $id ";
     $queryRes = $kunci->prepare($sql_EDIT_PROFILE);
-    $queryRes->execute([$name, $email,$address, $gender, $birthDay]);
+    $queryRes->execute([$name, $email,$address, $gender, $birthDay, $fotoPath]);
     return true;
+}
+
+function foto_Path($upload){
+    $target_dir = "images/"; 
+    $target_file = $target_dir . basename($_FILES[$upload]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    switch ($imageFileType) {
+        case 'jpg':
+        case 'png':
+        case 'jpeg':
+        case 'svg':
+        case 'gif':
+            if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file)){
+                return $target_file;
+            } else {
+                $error_message = "Error"; // gagal
+            }
+            break;
+        default:
+            $error_message = "Error"; // file bukan type gambar
+            break;
+    }
+    return $error_message;
 }

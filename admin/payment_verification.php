@@ -1,5 +1,11 @@
 <?php
 require_once '../dbCOOPLINK.php';
+
+if( !isset($_SESSION["adminID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+    header("Location: login_form.php");
+    exit;
+}
+
 $var = verifi_Bayar();
 if( isset($_POST["acc"]) ){
     acc_Bayar(true, $_POST["acc"]);

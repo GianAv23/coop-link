@@ -1,5 +1,11 @@
 <?php
 require_once '../dbCOOPLINK.php';
+
+if( !isset($_SESSION["adminID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+    header("Location: login_form.php");
+    exit;
+}
+
 $var = jumlah_Total_Uang();
 ?>
 

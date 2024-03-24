@@ -1,6 +1,11 @@
 <?php
 require_once '../dbCOOPLINK.php';
 
+if( !isset($_SESSION["nasabahID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+    header("Location: login_form.php");
+    exit;
+}
+
 if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"]) && isset($_POST["confirpass"]) ){
 
     if( $_POST["newpass"] === $_POST["confirpass"] ){
@@ -9,6 +14,7 @@ if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"])
             header("Location: login_form.php");
             exit;
         } else {
+            // INI BAKAL JALAN KETIKA PASSWORD NYA KURANG DARI 8 KARAKTER
             header("Location: change_pass.php");
             exit;
         }

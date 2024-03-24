@@ -1,8 +1,20 @@
 <?php
 require_once '../dbCOOPLINK.php';
 
+if( !isset($_SESSION["nasabahID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+    header("Location: login_form.php");
+    exit;
+}
+
 if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) && isset($_POST["gender"]) && isset($_POST["dob"]) && isset($_POST["submit"]) ){
-    if( edit_Profile($_POST["name"], $_POST["email"], $_POST["address"], $_POST["gender"], $_POST["dob"]) ){
+
+    $path_foto = foto_Path("FOTO_USER"); // SESUAIN NAME DENGAN "FOTO_USER" DI FORM INPUT NAME-NYA
+    if( $path_foto === "Error" ){
+        header("Location: edit_profile.php");
+        exit;
+    }
+
+    if( edit_Profile($_POST["name"], $_POST["email"], $_POST["address"], $_POST["gender"], $_POST["dob"], $path_foto ) ){
         header("Location: home_user.php");
         exit;
     }else{

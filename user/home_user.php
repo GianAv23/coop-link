@@ -1,8 +1,14 @@
 <?php
 require_once '../dbCOOPLINK.php';
+
+if( !isset($_SESSION["nasabahID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+    header("Location: login_form.php");
+    exit;
+}
+
 $var = info_Nasabah();
 
-if( isset($_POST["logout"]) ){
+if( isset($_POST["logout"]) ){ // LOGOUT HAPUS SEMUA SESSION
     session_destroy();
     header("Location: login_form.php");
     exit;
@@ -51,7 +57,7 @@ if( isset($_POST["logout"]) ){
                     <div class="flex flex-col gap-4">
                         <div class="flex flex-col gap-2 items-start">
                             <div class="rounded-full w-12 h-12 bg-white bg-center bg-cover"
-                                style="background-image: url(<?= "foto path nasabah pid"?>);">
+                                style="background-image: url(<?= $var["fotoProfil"] ?>);">
                             </div>
 
                             <span class="font-semibold text-bgColor"><?= $var["namaUser"] ?></span>

@@ -37,7 +37,7 @@ function cek_Nasabah($name, $pass){
     $queryRes = $kunci->prepare($sql_CARI_NASABAH);
     $queryRes->execute([]);
     while($data_db = $queryRes->fetch(PDO::FETCH_ASSOC)){
-        if( $data_db["namaUser"] == $name && $data_db["passwordUser"] == $pass ){
+        if( $data_db["namaUser"] == $name && password_verify($pass, $data_db["passwordUser"]) ){
             $_SESSION["nasabahID"] = $data_db["userID"];
             return true;
         }
@@ -52,6 +52,7 @@ function change_User_Pass($newPass){
         return false;
     }
     $id = $_SESSION["nasabahID"];
+    $newPass = password_hash($newPass, PASSWORD_BCRYPT);
     $sql_CHANGE_PASSWORD = "UPDATE users SET passwordUser = ? WHERE userID = ?";
     $queryRes = $kunci->prepare($sql_CHANGE_PASSWORD);
     $queryRes->execute([$newPass, $id]);
@@ -103,6 +104,7 @@ function registrasi_Nasabah($email, $name, $pass, $address, $gender, $birthDay, 
         return "Lengkapi datanya";
     }
 
+    $pass = password_hash($pass, PASSWORD_BCRYPT);
     global $kunci;
     $sql_INSERT_REGISTRASI = "INSERT INTO lecture_web.userregis ( emailRegis, namaRegis, passRegis, alamRegis, gendRegis, birtDRegis, filebayarRegis, simpananPokok, fotoProfil) 
                                 VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";

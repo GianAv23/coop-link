@@ -298,7 +298,7 @@ function foto_Path($upload){
         case 'jpeg':
         case 'svg':
         case 'gif':
-            if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file)){
+            if (move_uploaded_file($_FILES[$upload]["tmp_name"], $target_file)){
                 return $target_file;
             } else {
                 $error_message = "Error"; // gagal

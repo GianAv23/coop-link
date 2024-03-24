@@ -194,14 +194,14 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
                 <!-- DATE OF BIRTH -->
 
 
-                <div class="flex flex-col gap-1 justify-center items-center">
+                <!-- <div class="flex flex-col gap-1 justify-center items-center">
                     <span class="text-cardData font-medium text-base">Hang on Buddy</span>
                     <span class="text-cardData font-bold text-xl">Almost There</span>
-                </div>
+                </div> -->
 
-                <!-- UPLOAD START -->
+                <!-- UPLOAD PROFILE PICTURE START -->
                 <div class="mb-4 gap-2 flex flex-col">
-                    <label for="upload" class="text-cardData font-semibold">Upload</label>
+                    <label for="upload" class="text-cardData font-semibold">Upload Profile Picture</label>
                     <div>
 
                         <input type="file" class="w-full text-sm text-slate-500 
@@ -214,7 +214,39 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
 
                     </div>
                 </div>
-                <!-- UPLOAD END -->
+                <!-- UPLOAD PROFILE PICTURE END -->
+
+                <!-- NOMINAL PAYMENT START -->
+                <div class=" flex flex-col gap-1">
+                    <div>
+                        <label class="text-cardData font-semibold" for="jumlahBayar">
+                            Nominal Payment
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="number" name="jumlahBayar" id="jumlahBayar" placeholder="Enter amount"
+                            class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
+                    </div>
+                </div>
+                <!-- NOMINAL PAYMENT END -->
+
+                <!-- UPLOAD BUKTI TRF START -->
+                <div class="mb-4 gap-2 flex flex-col">
+                    <label for="upload" class="text-cardData font-semibold">Upload Transfer Proof</label>
+                    <div>
+
+                        <input type="file" class="w-full text-sm text-slate-500 
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-lg file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-textColor2 file:text-slate-900
+                    hover:file:bg-textColor hover:file:text-cardData
+                    " id="upload" name="BUKTI_TRANSFER">
+
+                    </div>
+                </div>
+                <!-- UPLOAD BUKTI TRF END -->
 
                 <!-- CAPCTHA START -->
 

@@ -67,7 +67,8 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
         </div>
         <!-- HEADER END -->
 
-        <form class="flex flex-col gap-4 md:px-44 lg:px-64 xl:px-80" method="post" enctype="multipart/form-data" action="">
+        <form class="flex flex-col gap-4 md:px-44 lg:px-64 xl:px-80" method="post" enctype="multipart/form-data"
+            action="">
 
             <div>
                 <input type="hidden" name="id">
@@ -149,6 +150,24 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
                 </div>
             </div>
             <!-- DATE OF BIRTH -->
+
+            <!-- ini pid untuk input upload profile picture -->
+            <!-- UPLOAD PROFILE PICTURE START -->
+            <div class="mb-4 gap-2 flex flex-col">
+                <label for="upload" class="text-cardData font-semibold">Upload Profile Picture</label>
+                <div>
+
+                    <input type="file" class="w-full text-sm text-slate-500 
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-lg file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-textColor2 file:text-slate-900
+                    hover:file:bg-textColor hover:file:text-cardData
+                    " id="upload" name="FOTO_USER">
+
+                </div>
+            </div>
+            <!-- UPLOAD PROFILE PICTURE END -->
 
             <!-- BUTTON START -->
             <div class="flex flex-row gap-2 mt-2">

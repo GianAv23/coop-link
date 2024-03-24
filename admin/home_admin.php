@@ -6,6 +6,12 @@ if( !isset($_SESSION["adminID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
     exit;
 }
 
+if( isset($_POST["logout"]) ){ // LOGOUT HAPUS SEMUA SESSION
+    session_destroy();
+    header("Location: login_form.php");
+    exit;
+}
+
 $var = jumlah_Total_Uang();
 ?>
 
@@ -42,20 +48,52 @@ $var = jumlah_Total_Uang();
 
         <!-- NAVBAR START -->
         <div class="sticky top-0 bg-black/30 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
+
+            <!-- PROFIL BUTTON START -->
+            <div class="mt-1 p-3 absolute max-h-0 right-0 top-14 " id="subModal" style="display:none ;">
+
+                <div class="modalProfile bg-bgLogo backdrop-blur-lg rounded-xl p-4 items-center">
+                    <div class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-2 items-start">
+                            <span class="font-bold text-bgColor">Admin</span>
+                        </div>
+
+                        <form action="user_list.php">
+                            <button class="flex flex-row justify-between" type="submit">
+                                <span class="text-bgColor">View User List</span>
+                            </button>
+                        </form>
+
+                        <form action="" method="post">
+                            <button
+                                class="bg-bgColor/80 rounded-full border-2 border-dashed border-cardData/50 px-3 py-2"
+                                type="submit" name="logout">
+                                <span class="text-bgWhite font-semibold text-sm">
+                                    Log Out
+                                </span>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- PROFIL BUTTON END -->
+
             <div class="flex items-center justify-start">
                 <span class="text-white font-semibold text-xl">
                     Coop<span class="text-textColor2">Link</span>
                 </span>
             </div>
 
-            <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center">
+            <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center cursor-pointer"
+                onclick="toogleModal()">
 
                 <span class="text-white font-semibold ml-5">
                     Admin
                 </span>
 
-                <div class="ml-3 w-7 h-7 rounded-full border border-bgWhite bg-cover bg-center"
-                    style="background-image: url();">
+                <div class="ml-3 w-7 h-7 rounded-full bg-cover bg-center"
+                    style="background-image: url('../images/profilAdmin.svg');">
                 </div>
 
 
@@ -71,12 +109,11 @@ $var = jumlah_Total_Uang();
 
                 <form action="history_admin.php">
                     <!-- INI GW BUAT LINK KE HISTORY ADMIN -->
-                    <button
-                    class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-3xl">
-                    History
+                    <button class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-3xl">
+                        History
                     </button>
                 </form>
-                
+
             </div>
 
             <div class="pokok flex justify-end me-4 mt-10 sm:mt-3 sm:me-10">
@@ -126,7 +163,7 @@ $var = jumlah_Total_Uang();
 
                 <form action="payment_verification.php">
                     <!-- INI LINK KE PAYMENT VERIFICATION -->
-                    <button class="text-black font-bold rounded-2xl p-2 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">Add
+                    <button class="text-black font-bold rounded-2xl p-2 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">
                         View User Payment
                     </button>
                 </form>
@@ -134,8 +171,8 @@ $var = jumlah_Total_Uang();
                 <form action="user_verification.php">
                     <!-- BUAT LINK KE USER VERIFICATION -->
                     <button
-                        class="text-black font-bold rounded-2xl p-2 mt-2 mb-4 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">Add
-                        View User List
+                        class="text-black font-bold rounded-2xl p-2 mt-2 mb-4 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">User
+                        Verification
                     </button>
                 </form>
             </div>
@@ -147,7 +184,17 @@ $var = jumlah_Total_Uang();
             </footer> -->
         </div>
     </div>
+    <script>
+    let subModal = document.getElementById("subModal");
 
+    function toogleModal() {
+        if (subModal.style.display === "none") {
+            subModal.style.display = "block";
+        } else {
+            subModal.style.display = "none";
+        }
+    }
+    </script>
 </body>
 
 </html>

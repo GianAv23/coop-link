@@ -1,7 +1,7 @@
 <?php
 require_once '../dbCOOPLINK.php';
 
-if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) && isset($_POST["email"]) && isset($_POST["address"]) && isset($_POST["birthday"]) && isset($_POST["gender"]) && isset($_POST["jumlahBayar"]) ){
+if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) && isset($_POST["email"]) && isset($_POST["address"]) && isset($_POST["birthday"]) && isset($_POST["gender"]) && isset($_POST["jumlahBayar"]) && isset($_POST["submit"])){
 
     if( $_POST["passw1"] === $_POST["passw2"] ){
 
@@ -77,7 +77,7 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
 
 
             <!-- FORM START -->
-            <form class="flex flex-col gap-6 mt-8" method="post">
+            <form class="flex flex-col gap-6 mt-8" method="post" enctype="multipart/form-data">
 
                 <!-- USERNAME START -->
                 <div class="flex flex-col gap-1">
@@ -249,19 +249,15 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
                 <!-- UPLOAD BUKTI TRF END -->
 
                 <!-- CAPCTHA START -->
-
-
                 <!-- CAPCTHA END -->
 
                 <!-- BUTTON START -->
                 <div class="flex flex-row">
 
-                    <form action="login_form.php">
-                        <!-- LINK KE LOGIN KARENA MASIH HARUS DI ACC -->
-                        <button class="w-full shadow bg-textColor2 py-2 px-4 rounded-full" type="submit" name="submit">
-                            <span class="text-textColor font-bold">Sign Up</span>
-                        </button>
-                    </form>
+                    <!-- LINK KE LOGIN KARENA MASIH HARUS DI ACC -->
+                    <button class="w-full shadow bg-textColor2 py-2 px-4 rounded-full" type="submit" name="submit">
+                        <span class="text-textColor font-bold">Sign Up</span>
+                    </button>
 
                 </div>
                 <!-- BUTTON END -->

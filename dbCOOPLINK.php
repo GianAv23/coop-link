@@ -48,7 +48,7 @@ function cek_Nasabah($name, $pass){
 function change_User_Pass($newPass){
     global $kunci;
     $newPass = strval($newPass);
-    if( $newPass < 8 ){
+    if( strlen($newPass) < 8 ){
         return false;
     }
     $id = $_SESSION["nasabahID"];
@@ -127,7 +127,7 @@ function show_Register($id){
         return $arrList;
     } else {
         $sql_LIST_SPECIFIC_REGISTER = "SELECT * FROM lecture_web.userregis WHERE regisID = ?";
-        $singleLIST;
+        $singleLIST = '';
         $queryRes = $kunci->prepare($sql_LIST_SPECIFIC_REGISTER);
         $queryRes->execute([$id]);
         $singleLIST = $queryRes->fetch(PDO::FETCH_ASSOC);
@@ -287,7 +287,7 @@ function edit_Profile($name, $email, $address, $gender, $birthDay, $fotoPath){
 }
 
 function foto_Path($upload){
-    $target_dir = "images/"; 
+    $target_dir = "../images/"; 
     $target_file = $target_dir . basename($_FILES[$upload]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));

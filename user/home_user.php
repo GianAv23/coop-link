@@ -60,32 +60,32 @@ if( isset($_POST["logout"]) ){ // LOGOUT HAPUS SEMUA SESSION
                                 style="background-image: url(<?= $var["fotoProfil"] ?>);">
                             </div>
 
-                            <span class="font-semibold text-bgColor"><?= $var["namaUser"] ?></span>
+                            <span class="font-bold text-bgColor"><?= $var["namaUser"] ?></span>
                         </div>
 
                         <form action="edit_profile.php" method="post">
                             <button class="flex flex-row justify-between" type="submit">
                                 <span class="text-bgColor">View Profile</span>
-                                <span class="text-bgColor">></span>
                             </button>
                         </form>
 
                         <form action="change_pass.php" method="post">
                             <button class="flex flex-row justify-between" type="submit" name="changePassw">
                                 <span class="text-bgColor">Change Password</span>
-                                <span class="text-bgColor">></span>
                             </button>
                         </form>
 
                         <form action="" method="post">
-                            <button class="bg-bgColor/80 rounded-full border-2 border-dashed border-cardData/50 px-3 py-2"
-                            type="submit" name="logout">
-                            <span class="text-bgWhite font-semibold text-sm">
-                                Log Out
-                            </span>
+                            <div></div>
+                            <button
+                                class="bg-bgColor/80 rounded-full border-2 border-dashed border-cardData/50 px-3 py-2"
+                                type="submit" name="logout">
+                                <span class="text-bgWhite font-semibold text-sm">
+                                    Log Out
+                                </span>
                             </button>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
@@ -100,10 +100,11 @@ if( isset($_POST["logout"]) ){ // LOGOUT HAPUS SEMUA SESSION
             <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center cursor-pointer"
                 onclick="toogleModal()">
                 <span class="text-white font-semibold ml-5">
-                    <?= $var["namaUser"] ?><!-- value nama nasabah -->
+                    <?= $var["namaUser"] ?>
+                    <!-- value nama nasabah -->
                 </span>
                 <div class="ml-3 w-7 h-7 rounded-full border border-bgWhite bg-cover bg-center"
-                    style="background-image: url(<?= "foto path nasabah pid"?>);">
+                    style="background-image: url(<?= $var["fotoProfil"] ?>);">
                 </div>
             </div>
         </div>
@@ -116,12 +117,12 @@ if( isset($_POST["logout"]) ){ // LOGOUT HAPUS SEMUA SESSION
             <div class="flex flex-row justify-between items-center">
                 <div class="user mt-4 ms-4 sm:ms-10 sm:mt-10 sm:text-3xl">Hi, Xiao Dylan LTD.</div>
                 <form action="history_user.php" method="post">
-                    <button
-                    class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-3xl" type="submit" name="history">
-                    History
+                    <button class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-3xl"
+                        type="submit" name="history">
+                        History
                     </button>
                 </form>
-                
+
             </div>
 
             <div class="pokok flex justify-end me-4 mt-10 sm:mt-3 sm:me-10">
@@ -176,11 +177,12 @@ if( isset($_POST["logout"]) ){ // LOGOUT HAPUS SEMUA SESSION
                 </div>
                 <form action="payment_form.php" method="post">
                     <button
-                    class="text-black font-bold rounded-2xl p-2 mb-8 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto" type="submit" name="addBalance">
-                    Add Balance
+                        class="text-black font-bold rounded-2xl p-2 mb-8 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto"
+                        type="submit" name="addBalance">
+                        Add Balance
                     </button>
                 </form>
-               
+
             </div>
 
 

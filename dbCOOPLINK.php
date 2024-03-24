@@ -45,17 +45,40 @@ function cek_Nasabah($name, $pass){
     return false;
 }
 
-function change_User_Pass($newPass){
+function list_All_User(){
     global $kunci;
+    $sql_LIST_ALL_USERS = "SELECT * FROM users";
+    $arrList = [];
+    $queryRes = $kunci->prepare($sql_LIST_ALL_USERS);
+    $queryRes->execute([]);
+    while( $row = $queryRes->fetch(PDO::FETCH_ASSOC) ){
+        $arrList = $row;
+    }
+    return $arrList;
+}
+
+function remove_User($id){
+    global $kunci;
+    $sql_DELETE_USER = "DELETE FROM users WHERE userID = $id";
+    $queryRes = $kunci->prepare($sql_DELETE_USER);
+    $queryRes->execute([]);
+}
+
+function change_User_Pass($newPass, $name){
+    global $kunci;
+    $name = strval($name);
     $newPass = strval($newPass);
-    if( strlen($newPass) < 8 ){
+    if( $newPass < 8 ){
         return false;
     }
-    $id = $_SESSION["nasabahID"];
+    $sql_FIND_USERID = "SELECT userID FROM users WHERE namaUser = ?";
+    $nama = $kunci->prepare($sql_FIND_USERID);
+    $nama->execute([$name]);
+    $resID = $nama->fetch(PDO::FETCH_ASSOC);
     $newPass = password_hash($newPass, PASSWORD_BCRYPT);
     $sql_CHANGE_PASSWORD = "UPDATE users SET passwordUser = ? WHERE userID = ?";
     $queryRes = $kunci->prepare($sql_CHANGE_PASSWORD);
-    $queryRes->execute([$newPass, $id]);
+    $queryRes->execute([$newPass, $resID["userID"]]);
     return true;
 }
 

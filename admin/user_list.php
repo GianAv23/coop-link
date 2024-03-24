@@ -6,15 +6,10 @@ if( !isset($_SESSION["adminID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
     exit;
 }
 
-$var = show_Register(0); // 0 untuk indikasi nampilin semua user yang mau di acc atau reject
-if( isset($_POST["acc"]) ){
-    acc_Register(true, $_POST["acc"]);
-    header("Location: user_verification.php");
-    exit;
-}
+$var = list_All_User();
 
 if( isset($_POST["del"]) ){
-    acc_Register(false, $_POST["del"]);
+    remove_User($_POST["del"]);
     header("Location: user_verification.php");
     exit;
 }
@@ -93,19 +88,20 @@ if( isset($_POST["del"]) ){
                     <div class="h-[600px] flex-grow overflow-y-scroll flex flex-col gap-4">
 
                         <!-- INI YANG DI LOOP PID -->
+                        <?php foreach($var as $v) : ?>
                         <div
                             class="bg-cardData/50 rounded-3xl border border-bgWhite flex flex-col p-4 backdrop-blur-md">
                             <div class="flex flex-col md:flex-row md:justify-between md:items-start">
 
                                 <div class="flex flex-col gap-0">
                                     <span class="font-semibold text-bgWhite text-lg">
-                                        value nama nasabah
+                                        <?= $v["namaUser"] ?><!-- value nama nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm text-textColor2">
-                                        value email nasabah
+                                        <?= $v["emailUser"] ?><!-- value email nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm">
-                                        value alamat
+                                        <?= $v["alamat"] ?><!-- value alamat -->
                                     </span>
                                 </div>
 
@@ -115,7 +111,7 @@ if( isset($_POST["del"]) ){
                                         <form action="" method="post">
                                             <button
                                                 class="rounded-xl bg-bgLogo px-4 py-2 font-bold text-bgColor text-xs md:text-sm"
-                                                type="submit" name="acc" value="">
+                                                type="submit" name="del" value="<?= $v["userID"] ?>">
                                                 <span>Delete</span>
                                             </button>
 
@@ -125,6 +121,7 @@ if( isset($_POST["del"]) ){
                                 </div>
                             </div>
                         </div>
+                        <?php endforeach; ?>
                         <!-- INI YANG DI LOOP PID -->
                     </div>
                 </div>

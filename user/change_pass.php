@@ -5,7 +5,7 @@ if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"])
 
     if( $_POST["newpass"] === $_POST["confirpass"] ){
 
-        if( change_User_Pass($_POST["newpass"]) ){
+        if( change_User_Pass($_POST["newpass"], $_POST["name"]) ){
             header("Location: login_form.php");
             exit;
         } else {

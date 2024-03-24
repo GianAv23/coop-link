@@ -6,6 +6,8 @@ if( !isset($_SESSION["nasabahID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
     exit;
 }
 
+$var = info_Nasabah();
+
 if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) && isset($_POST["gender"]) && isset($_POST["dob"]) && isset($_POST["submit"]) ){
 
     $path_foto = foto_Path("FOTO_USER"); // SESUAIN NAME DENGAN "FOTO_USER" DI FORM INPUT NAME-NYA
@@ -85,7 +87,7 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
                 <div>
 
                     <input type="text" name="name" id="name" placeholder="Enter your username"
-                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
+                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" value="<?= $var["namaUser"] ?>">
                 </div>
             </div>
             <!-- USERNAME END -->
@@ -99,7 +101,7 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
                 </div>
                 <div>
                     <input class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" placeholder="Enter your email"
-                        id="email" type="email" name="email">
+                        id="email" type="email" name="email" value="<?= $var["emailUser"] ?>">
                 </div>
             </div>
             <!-- EMAIL END -->
@@ -114,7 +116,7 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
 
                 <div>
                     <input type="text" name="address" id="alamat" placeholder="Enter your email"
-                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
+                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" value="<?= $var["alamat"] ?>">
                 </div>
             </div>
             <!-- ADDRESS END -->
@@ -127,7 +129,7 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
                     </label>
                 </div>
 
-                <select class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" name="gender" id="gender">
+                <select class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" name="gender" id="gender" value="<?= $var["kelamin"] ?>">
                     <option class="text-cardData bg-bgColor" value="male">Male</option>
                     <option class="text-cardData bg-bgColor" value="female">Female</option>
 
@@ -146,7 +148,7 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
                 <div>
 
                     <input type="date" name="dob" id="alamat" placeholder="Enter your Date of Birth"
-                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
+                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" value="<?= $var["tanggalLahir"] ?>">
                 </div>
             </div>
             <!-- DATE OF BIRTH -->
@@ -163,7 +165,7 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
                     file:text-sm file:font-semibold
                     file:bg-textColor2 file:text-slate-900
                     hover:file:bg-textColor hover:file:text-cardData
-                    " id="upload" name="FOTO_USER">
+                    " id="upload" name="FOTO_USER" value="<?= $var["fotoProfil"] ?>">
 
                 </div>
             </div>

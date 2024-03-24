@@ -39,6 +39,9 @@ body {
 
 .balance{
     background-color: #385b2d;
+    background-image: url('/coop-link/images/bg\ hijau.png');
+    background-position: center;
+    background-size: cover;
 
     button{
         background-color: #9FED81;
@@ -90,18 +93,18 @@ body {
 @media (min-width: 641px){
     .wajib{
         .amount{
-            font-size: 55px;
+            font-size: 45px;
         }
     }
 
     .sukarela{
         .amount{
-            font-size: 55px;
+            font-size: 45px;
         }
     }
 
-    .balance{
-        background-image: url('/coop-link/images/bg\ hijau.png');
+    .content{
+        background-image: url('/coop-link/images/BG\ web.png');
         background-position: center;
         background-size: cover;
     }

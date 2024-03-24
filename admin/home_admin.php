@@ -103,7 +103,7 @@ $var = jumlah_Total_Uang();
 
 
         <div class="content rounded-xl border-2 text-white">
-
+            <!-- Hi User & History Button START -->
             <div class="flex flex-row justify-between items-center">
                 <div class="user mt-4 ms-4 sm:ms-10 sm:mt-10 sm:text-3xl">Hi, Xiao Dylan LTD.</div>
 
@@ -115,16 +115,21 @@ $var = jumlah_Total_Uang();
                 </form>
 
             </div>
+            <!-- Hi User & History Button END -->
 
+            <!-- Tabungan POKOK START -->
             <div class="pokok flex justify-end me-4 mt-10 sm:mt-3 sm:me-10">
                 <div class="flex flex-col text-end">
                     <div class="head text-sm sm:text-2xl">
                         <span>Tabungan</span>
                         <span class="font-bold">Pokok</span>
                     </div>
-                    <div class="amount text-2xl sm:text-7xl sm:font-bold mt-2"><?= $var["totalPokok"] ?></div>
+                    <div class="amount text-2xl sm:text-5xl sm:font-bold mt-2"><?= $var["totalPokok"] ?></div>
                 </div>
             </div>
+            <!-- Tabungan POKOK END -->
+
+            <!-- Tabungan Wajib START -->
             <div class="web sm:flex sm:mt-5">
                 <div class="wajib rounded-xl border mt-4 mx-4 sm:w-full">
                     <div class="brand font-bold text-xs sm:text-lg mt-4 ms-4 sm:mt-8 sm:mx-8">
@@ -138,6 +143,9 @@ $var = jumlah_Total_Uang();
                         <div class="amount mt-2 sm:mt-0 sm:font-bold"><?= $var["totalWajib"] ?></div>
                     </div>
                 </div>
+                <!-- Tabungan Wajib END -->
+
+                <!-- Tabungan Sukarela START -->
                 <div class="sukarela rounded-xl border mt-4 mx-4 sm:w-full">
                     <div class="brand font-bold text-xs sm:text-lg mt-4 ms-4 sm:mt-8 sm:mx-8">
                         <span>Coop</span><span style="color: #9FED81;">Link</span>
@@ -151,6 +159,8 @@ $var = jumlah_Total_Uang();
                     </div>
                 </div>
             </div>
+            <!-- Tabungan Sukarela END -->
+
             <div class="balance rounded-xl mx-4 my-4 sm:my-6 flex flex-col sm:flex-row">
                 <div class="detail text-xs sm:text-lg mt-5 mx-4 sm:my-6">
                     <span class="font-bold">Tabungan Wajib</span><span> dibayarkan setiap 1 bulan sekali sebesar Rp
@@ -163,7 +173,7 @@ $var = jumlah_Total_Uang();
 
                 <form action="payment_verification.php">
                     <!-- INI LINK KE PAYMENT VERIFICATION -->
-                    <button class="text-black font-bold rounded-2xl p-2 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">
+                    <button class="text-black font-bold rounded-2xl p-2 mt-8 mx-4 sm:my-6 sm:px-16 sm:py-3 sm:ms-auto">
                         View User Payment
                     </button>
                 </form>
@@ -171,7 +181,7 @@ $var = jumlah_Total_Uang();
                 <form action="user_verification.php">
                     <!-- BUAT LINK KE USER VERIFICATION -->
                     <button
-                        class="text-black font-bold rounded-2xl p-2 mt-2 mb-4 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">User
+                        class="text-black font-bold rounded-2xl p-2 mt-2 mb-4 mx-4 sm:my-6 sm:px-16 sm:py-3 sm:ms-auto">User
                         Verification
                     </button>
                 </form>

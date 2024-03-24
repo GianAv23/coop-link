@@ -41,7 +41,8 @@ if( isset($_POST["kategori_simpanan"]) && isset($_POST["tgl_pembayaran"]) && iss
                 colors: {
                     bgColor: "#141A12",
                     bgLogo: "#9FED81",
-                    cardData: "#282828",
+                    cardData: "#EEEEEE",
+                    // cardData: "#282828",
                     textColor2: "#9FED81",
                 },
             }

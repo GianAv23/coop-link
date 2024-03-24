@@ -90,7 +90,8 @@ if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) )
 
                     <a href="change_pass.php" class="flex justify-end"><span
                             class="text-textColor2 font-medium text-sm mt-1">Lupa
-                            Password</span></a>
+                            Password</span>
+                    </a>
                 </div>
                 <!-- PASSWORD END -->
 

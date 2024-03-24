@@ -1,16 +1,26 @@
 <?php
 require_once '../dbCOOPLINK.php';
 
-if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) ){
-    $cek = (cek_Nasabah($_POST["name"], $_POST["passw"]) );
-    
-    if($cek === "Valid"){
-        header("Location: home_user.php");
+if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"]) && isset($_POST["confirpass"]) ){
+
+    if( $_POST["newpass"] === $_POST["confirpass"] ){
+
+        if( change_Admin_Pass($_POST["newpass"], $_POST["name"]) ){
+            header("Location: login_form.php");
+            exit;
+        } else {
+            // INI BAKAL JALAN KETIKA PASSWORD NYA KURANG DARI 8 KARAKTER
+            header("Location: change_pass.php");
+            exit;
+        }
+        
+    } else {
+        header("Location: change_pass.php");
         exit;
-    }else{
-        $error_message = $cek;
     }
-}
+    
+} 
+
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +31,8 @@ if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) )
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Log In | CoopLink</title>
+    <title>Change Pass | CoopLink</title>
+
     <script>
     tailwind.config = {
         theme: {
@@ -40,10 +51,9 @@ if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) )
 </head>
 
 <body>
+    <div class="w-screen min-h-screen bg-bgColor">
 
-    <div class="bg-bgColor w-screen min-h-screen">
-
-        <div class="w-screen min-h-screen flex flex-col justify-center px-10 md:px-32 lg:px-60 xl:px-96">
+        <div class="w-screen min-h-screen flex flex-col justify-center py-10 px-8">
 
             <!-- HEADER START -->
             <div class="flex flex-col gap-2 mb-8 items-center">
@@ -54,20 +64,11 @@ if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) )
                     </span>
                 </div>
                 <!-- LOGO END -->
-                <span class="text-cardData font-bold text-3xl">Login Account</span>
+                <span class="text-cardData font-bold text-3xl">Change Password</span>
             </div>
             <!-- HEADER END -->
 
-            <!-- FORM START -->
-            <form class="flex flex-col gap-6 mt-8" method="post">
-
-                <!-- ERROR MESSAGE START -->
-                <?php if (!empty($error_message)) : ?>
-                <div id="error-message" class="flex p-3 justify-center bg-textColor2/30 rounded-lg">
-                    <span class="text-textColor2 font-medium text-sm flex text-center"><?= $error_message ?></span>
-                </div>
-                <?php endif; ?>
-                <!-- ERROR MESSAGE END -->
+            <form class="flex flex-col gap-6 md:px-44 lg:px-64 xl:px-80" method="post" action="">
 
                 <!-- USERNAME START -->
                 <div class=" flex flex-col gap-1">
@@ -84,46 +85,56 @@ if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) )
                 </div>
                 <!-- USERNAME END -->
 
+
                 <!-- PASSWORD START -->
                 <div class="flex flex-col gap-1">
                     <div>
                         <label class="text-cardData font-semibold" for="p">
-                            Password
+                            New Password
                         </label>
                     </div>
 
                     <div>
-                        <input type="password" name="passw" id="p" placeholder="Enter your password"
+
+                        <input type="password" name="newpass" id="p" placeholder="Enter your new password"
                             class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                     </div>
 
-                    <a href="change_pass.php" class="flex justify-end"><span
-                            class="text-textColor2 font-medium text-sm mt-1">Lupa
-                            Password</span>
-                    </a>
+                    <div>
+                        <span class="text-cardData font-medium text-xs">Min 8 Characters</span>
+                    </div>
+
                 </div>
                 <!-- PASSWORD END -->
+
+                <!-- CONFIRM PASSWORD START -->
+                <div class="flex flex-col gap-1">
+                    <div>
+                        <label class="text-cardData font-semibold" for="p2">
+                            Confirm New Password
+                        </label>
+                    </div>
+
+                    <div>
+
+                        <input type="password" name="confirpass" id="p2" placeholder="Enter your password"
+                            class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
+                    </div>
+                </div>
+                <!-- CONFIRM PASSWORD END -->
+
 
                 <!-- BUTTON START -->
                 <div class="mt-6">
                     <button type="submit" name="submit" class="bg-textColor2 w-full py-2 rounded-full"><span
-                            class="text-textColor font-bold">Log
-                            In</span>
+                            class="text-textColor font-bold">Change Password</span>
                     </button>
-                </div>
-
-                <div class="flex justify-center">
-                    <span class="text-cardData font-medium text-sm">Don’t have an account? <a
-                            class="text-textColor2 font-bold" href="signup_form.php">Sign
-                            Up</a></span>
                 </div>
                 <!-- BUTTON END -->
 
             </form>
-            <!-- FORM END -->
+
         </div>
-    </div>
-    <script></script>
 
 </body>
 

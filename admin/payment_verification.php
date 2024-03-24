@@ -79,12 +79,10 @@ if( isset($_POST["del"]) ){
                 <div class="flex flex-col p-6 gap-4 shrink-0">
                     <div class="mb-3 flex items-center gap-4">
                         <!-- untuk kembali ke home -->
-                        <button
-                            class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center" onclick="window.location.href='home_admin.php'"><span
-                                class="font-medium text-base" >
+                        <button class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center"
+                            onclick="window.location.href='home_admin.php'"><span class="font-medium text-base">
                                 <!-- on click buat back ke halaman home -->
-                                < Back 
-                            </span></button>
+                                < Back </span></button>
                         <span class="font-normal text-bgWhite text-lg lg:text-2xl">User Registration
                             <span class="text-textColor2 font-bold">Verification</span></span>
                     </div>
@@ -100,13 +98,16 @@ if( isset($_POST["del"]) ){
 
                                 <div class="flex flex-col gap-0 md:justify-center">
                                     <span class="font-semibold text-bgWhite text-lg">
-                                        <?= $v["namaUser"] ?><!-- value nama nasabah -->
+                                        <?= $v["namaUser"] ?>
+                                        <!-- value nama nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm text-textColor2">
-                                        <?= $v["emailUser"] ?><!-- value email nasabah -->
+                                        <?= $v["emailUser"] ?>
+                                        <!-- value email nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm">
-                                        <?= $v["tanggalTf"] . " | " . $v["alamat"] ?><!-- value tanggal pembayaran | value alamat -->
+                                        <?= $v["tanggalTf"] . " | " . $v["alamat"] ?>
+                                        <!-- value tanggal pembayaran | value alamat -->
                                     </span>
 
                                 </div>
@@ -115,25 +116,31 @@ if( isset($_POST["del"]) ){
 
                                     <div class="flex flex-row md:justify-end">
                                         <span class="font-semibold text-bgWhite text-lg pt-4 md:pt-0">
-                                            <?= $v["jmlhTf"] ?><!-- value nominal pembayaran -->
+                                            <?= $v["jmlhTf"] ?>
+                                            <!-- value nominal pembayaran -->
                                         </span>
                                     </div>
 
                                     <div class="flex flex-row justify-between mt-6 md:gap-12 ">
-                                        <button class="rounded-xl bg-bgColor border border-textColor2 px-4 py-1">
+                                        <div class="rounded-xl bg-bgColor border border-textColor2 px-4 py-1">
                                             <span class="font-medium text-textColor2 text-xs md:text-sm">
-                                                <?= $v["buktiTf"] ?><!-- Transfer Proof -->
+                                                <?= $v["kategori"] ?>
+                                                <!-- Transfer Proof -->
                                             </span>
-                                        </button>
+                                        </div>
 
                                         <div class="flex flex-row gap-2">
                                             <form action="" method="post">
-                                                <button class="rounded-xl bg-bgLogo px-4 py-1" type="submit" name="acc" value="<?= $v["tfID"] ?>">
-                                                    <span class="font-medium text-bgColor text-xs md:text-sm">Accept</span>
+                                                <button class="rounded-xl bg-bgLogo px-4 py-1" type="submit" name="acc"
+                                                    value="<?= $v["tfID"] ?>">
+                                                    <span
+                                                        class="font-medium text-bgColor text-xs md:text-sm">Accept</span>
                                                 </button>
-    
-                                                <button class="rounded-xl border border-textColor2 px-4 py-1" type="submit" name="del" value="<?= $v["tfID"] ?>">
-                                                    <span class="font-medium text-bgWhite text-xs md:text-sm">Reject</span>
+
+                                                <button class="rounded-xl border border-textColor2 px-4 py-1"
+                                                    type="submit" name="del" value="<?= $v["tfID"] ?>">
+                                                    <span
+                                                        class="font-medium text-bgWhite text-xs md:text-sm">Reject</span>
                                                 </button>
                                             </form>
                                         </div>

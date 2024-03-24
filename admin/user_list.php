@@ -10,7 +10,7 @@ $var = list_All_User();
 
 if( isset($_POST["del"]) ){
     remove_User($_POST["del"]);
-    header("Location: user_verification.php");
+    header("Location: user_list.php");
     exit;
 }
 
@@ -95,13 +95,16 @@ if( isset($_POST["del"]) ){
 
                                 <div class="flex flex-col gap-0">
                                     <span class="font-semibold text-bgWhite text-lg">
-                                        <?= $v["namaUser"] ?><!-- value nama nasabah -->
+                                        <?= $v["namaUser"] ?>
+                                        <!-- value nama nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm text-textColor2">
-                                        <?= $v["emailUser"] ?><!-- value email nasabah -->
+                                        <?= $v["emailUser"] ?>
+                                        <!-- value email nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm">
-                                        <?= $v["alamat"] ?><!-- value alamat -->
+                                        <?= $v["alamat"] ?>
+                                        <!-- value alamat -->
                                     </span>
                                 </div>
 

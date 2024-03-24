@@ -18,7 +18,7 @@ function cek_Admin($name, $pass){
     $queryRes = $kunci->prepare($sql_CARI_ADMIN);
     $queryRes->execute([]);
     while($data_db = $queryRes->fetch(PDO::FETCH_ASSOC)){
-        if( $data_db["adminName"] == $name && $data_db["adminPass"] == $pass ){
+        if( $data_db["adminName"] == $name && password_verify($pass, $data_db["adminPass"])){
             $_SESSION["adminID"] = $data_db["adminID"];
             return true;
         }
@@ -30,7 +30,7 @@ function cek_Nasabah($name, $pass){
     $name = strval($name);
     $pass = strval($pass);
     if( $name === "" && $pass === "" ){
-        return false;
+        return "Username and password are required";
     }
     global $kunci;
     $sql_CARI_NASABAH = "SELECT * FROM lecture_web.users";
@@ -39,10 +39,10 @@ function cek_Nasabah($name, $pass){
     while($data_db = $queryRes->fetch(PDO::FETCH_ASSOC)){
         if( $data_db["namaUser"] == $name && password_verify($pass, $data_db["passwordUser"]) ){
             $_SESSION["nasabahID"] = $data_db["userID"];
-            return true;
+            return "Valid";
         }
     }
-    return false;
+    return "Invalid username or password";
 }
 
 function list_All_User(){
@@ -52,18 +52,21 @@ function list_All_User(){
     $queryRes = $kunci->prepare($sql_LIST_ALL_USERS);
     $queryRes->execute([]);
     while( $row = $queryRes->fetch(PDO::FETCH_ASSOC) ){
-        $arrList = $row;
+        $arrList[] = $row;
     }
     return $arrList;
 }
 
 function remove_User($id){
     global $kunci;
-    $sql_DELETE_USER = "DELETE FROM users WHERE userID = $id";
+    $id = intval($id);
+    $sql_DELETE_TRANSAKSI_USER = "DELETE FROM transaksi WHERE userID = $id";
+    $queryDel = $kunci->prepare($sql_DELETE_TRANSAKSI_USER);
+    $queryDel->execute([]);
+    $sql_DELETE_USER = "DELETE FROM users WHERE userID = ?";
     $queryRes = $kunci->prepare($sql_DELETE_USER);
-    $queryRes->execute([]);
+    $queryRes->execute([$id]);
 }
-
 function change_User_Pass($newPass, $name){
     global $kunci;
     $name = strval($name);
@@ -79,6 +82,23 @@ function change_User_Pass($newPass, $name){
     $sql_CHANGE_PASSWORD = "UPDATE users SET passwordUser = ? WHERE userID = ?";
     $queryRes = $kunci->prepare($sql_CHANGE_PASSWORD);
     $queryRes->execute([$newPass, $resID["userID"]]);
+    return true;
+}
+function change_Admin_Pass($newPass, $name){
+    global $kunci;
+    $name = strval($name);
+    $newPass = strval($newPass);
+    if( $newPass < 8 ){
+        return false;
+    }
+    $sql_FIND_USERID = "SELECT adminID FROM adminko WHERE adminName = ?";
+    $nama = $kunci->prepare($sql_FIND_USERID);
+    $nama->execute([$name]);
+    $resID = $nama->fetch(PDO::FETCH_ASSOC);
+    $newPass = password_hash($newPass, PASSWORD_BCRYPT);
+    $sql_CHANGE_PASSWORD = "UPDATE adminKo SET adminPass = ? WHERE adminID = ?";
+    $queryRes = $kunci->prepare($sql_CHANGE_PASSWORD);
+    $queryRes->execute([$newPass, $resID["adminID"]]);
     return true;
 }
 

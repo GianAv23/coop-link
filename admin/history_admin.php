@@ -1,6 +1,6 @@
 <?php
 require_once '../dbCOOPLINK.php';
-if( !isset($_SESSION["adminID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+if( !isset($_SESSION["adminID"]) ){
     header("Location: login_form.php");
     exit;
 }
@@ -36,24 +36,56 @@ $var = history_Admin();
 </head>
 
 <body>
-    <div class="bg-bgBlack w-screen min-h-screen overflow-hidden">
+    <div class="w-screen min-h-screen px-10 pb-10">
 
         <!-- NAVBAR START -->
-        <div class="flex flex-row px-10 justify-between pt-10">
+        <div class="sticky top-0 bg-black/30 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
+
+            <!-- PROFIL BUTTON START -->
+            <div class="mt-1 p-3 absolute max-h-0 right-0 top-14 " id="subModal" style="display:none ;">
+
+                <div class="modalProfile bg-bgLogo backdrop-blur-lg rounded-xl p-4 items-center">
+                    <div class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-2 items-start">
+                            <span class="font-bold text-bgColor">Admin</span>
+                        </div>
+
+                        <form action="user_list.php">
+                            <button class="flex flex-row justify-between" type="submit">
+                                <span class="text-bgColor">View User List</span>
+                            </button>
+                        </form>
+
+                        <form action="" method="post">
+                            <button
+                                class="bg-bgColor/80 rounded-full border-2 border-dashed border-cardData/50 px-3 py-2"
+                                type="submit" name="logout">
+                                <span class="text-bgWhite font-semibold text-sm">
+                                    Log Out
+                                </span>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- PROFIL BUTTON END -->
+
             <div class="flex items-center justify-start">
                 <span class="text-white font-semibold text-xl">
                     Coop<span class="text-textColor2">Link</span>
                 </span>
             </div>
 
-            <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center">
+            <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center cursor-pointer"
+                onclick="toogleModal()">
 
                 <span class="text-white font-semibold ml-5">
                     Admin
                 </span>
 
-                <div class="ml-3 w-7 h-7 rounded-full border border-bgWhite bg-cover bg-center"
-                    style="background-image: url(assets/test.jpg);">
+                <div class="ml-3 w-7 h-7 rounded-full bg-cover bg-center"
+                    style="background-image: url('../images/profilAdmin.svg');">
                 </div>
 
 
@@ -63,13 +95,12 @@ $var = history_Admin();
 
         <!-- BODY START -->
         <div class="flex flex-row justify-between">
-            <div class="w-full h-full bg-bgBlack rounded-3xl border border-textColor2 m-8">
+            <div class="w-full h-full bg-bgBlack rounded-3xl border border-textColor2">
                 <div class="flex flex-col p-6 gap-4 shrink-0">
                     <div class="mb-3 flex items-center gap-4">
                         <!-- untuk kembali ke home -->
-                        <button
-                            class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center" onclick="window.location.href='home_admin.php'"><span
-                                class="font-medium text-base">
+                        <button class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center"
+                            onclick="window.location.href='home_admin.php'"><span class="font-medium text-base">
                                 <!-- on click buat back ke halaman home -->
                                 < Back </span></button>
                         <span class="font-normal text-bgWhite text-lg md:text-xl lg:text-2xl">History
@@ -101,23 +132,27 @@ $var = history_Admin();
 
                                     <div class="flex flex-col pt-2">
                                         <span class="font-semibold text-bgWhite text-base md:pt-0">
-                                            <?= $v["kategori"] ?><!-- value kategori simpanan -->
+                                            <?= $v["kategori"] ?>
+                                            <!-- value kategori simpanan -->
                                         </span>
 
 
                                         <span class="font-semibold text-bgWhite/60 text-base">
-                                            <?= $v["tanggalTf"] ?><!-- value tanggal pembayaran -->
+                                            <?= $v["tanggalTf"] ?>
+                                            <!-- value tanggal pembayaran -->
                                         </span>
                                     </div>
 
                                     <div class="flex flex-col pt-2 md:items-end">
                                         <span class="font-semibold text-bgWhite text-base md:pt-0">
-                                            <?= $v["jmlhTf"] ?><!-- value nominal pembayaran -->
+                                            <?= $v["jmlhTf"] ?>
+                                            <!-- value nominal pembayaran -->
                                         </span>
 
 
                                         <span class="font-semibold text-textColor2 text-base">
-                                            <?= $v["statusTf"] ?><!-- value status pembayaran -->
+                                            <?= $v["statusTf"] ?>
+                                            <!-- value status pembayaran -->
                                         </span>
                                     </div>
 

@@ -15,7 +15,7 @@ if( isset($_POST["kategori_simpanan"]) && isset($_POST["tgl_pembayaran"]) && iss
         exit;
     }
 
-    if( pembayaran_Nasabah( $_POST["kategori_simpanan"], $_POST["tgl_pembayaran"], $_POST["amount"], "MASUKIN FILE PATHNYA BUKTI TRANSFER" ) ){ 
+    if( pembayaran_Nasabah( $_POST["kategori_simpanan"], $_POST["tgl_pembayaran"], $_POST["amount"], $file_path_bukti_bayar) ){ 
         header("Location: home_user.php");
         exit;
     } else {
@@ -71,7 +71,7 @@ if( isset($_POST["kategori_simpanan"]) && isset($_POST["tgl_pembayaran"]) && iss
 
 
             <!-- FORM START -->
-            <form class="flex flex-col gap-6 mt-8" method="post">
+            <form class="flex flex-col gap-6 mt-8" method="post" enctype="multipart/form-data">
                 <!-- PAYMENT START -->
                 <div class="flex flex-col gap-1">
                     <div>
@@ -117,6 +117,23 @@ if( isset($_POST["kategori_simpanan"]) && isset($_POST["tgl_pembayaran"]) && iss
                     </div>
                 </div>
                 <!-- AMOUNT END -->
+
+                <!-- UPLOAD BUKTI TRF START -->
+                <div class="mb-4 gap-2 flex flex-col">
+                    <label for="upload" class="text-cardData font-semibold">Upload Transfer Proof</label>
+                    <div>
+
+                        <input type="file" class="w-full text-sm text-slate-500 
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-lg file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-textColor2 file:text-slate-900
+                    hover:file:bg-textColor hover:file:text-cardData
+                    " id="upload" name="BUKTI_TRANSFER">
+
+                    </div>
+                </div>
+                <!-- UPLOAD BUKTI TRF END -->
 
                 <!-- BUTTON START -->
                 <div class="flex flex-row gap-4 mt-2">

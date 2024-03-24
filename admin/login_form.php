@@ -1,3 +1,16 @@
+<?php
+require_once '../dbCOOPLINK.php';
+if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) ){
+    if( cek_Admin($_POST["name"], $_POST["passw"]) ){
+        header("Location: home_admin.php");
+        exit;
+    }else{
+        header("Location: login_form.php");
+        exit;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

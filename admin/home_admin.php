@@ -1,3 +1,14 @@
+<?php
+require_once '../dbCOOPLINK.php';
+
+if( !isset($_SESSION["adminID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+    header("Location: login_form.php");
+    exit;
+}
+
+$var = jumlah_Total_Uang();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,8 +68,15 @@
 
             <div class="flex flex-row justify-between items-center">
                 <div class="user mt-4 ms-4 sm:ms-10 sm:mt-10 sm:text-3xl">Hi, Xiao Dylan LTD.</div>
-                <button
-                    class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-3xl">History</button>
+
+                <form action="history_admin.php">
+                    <!-- INI GW BUAT LINK KE HISTORY ADMIN -->
+                    <button
+                    class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-3xl">
+                    History
+                    </button>
+                </form>
+                
             </div>
 
             <div class="pokok flex justify-end me-4 mt-10 sm:mt-3 sm:me-10">
@@ -67,7 +85,7 @@
                         <span>Tabungan</span>
                         <span class="font-bold">Pokok</span>
                     </div>
-                    <div class="amount text-2xl sm:text-7xl sm:font-bold mt-2">Rp 4.000.000</div>
+                    <div class="amount text-2xl sm:text-7xl sm:font-bold mt-2"><?= $var["totalPokok"] ?></div>
                 </div>
             </div>
             <div class="web sm:flex sm:mt-5">
@@ -80,7 +98,7 @@
                             <span>Tabungan</span>
                             <span class="font-bold">Wajib</span>
                         </div>
-                        <div class="amount mt-2 sm:mt-0 sm:font-bold">Rp 10.000.000</div>
+                        <div class="amount mt-2 sm:mt-0 sm:font-bold"><?= $var["totalWajib"] ?></div>
                     </div>
                 </div>
                 <div class="sukarela rounded-xl border mt-4 mx-4 sm:w-full">
@@ -92,7 +110,7 @@
                             <span>Tabungan</span>
                             <span class="font-bold">Sukarela</span>
                         </div>
-                        <div class="amount mt-2 sm:mt-0 sm:font-bold">Rp 10.000.000</div>
+                        <div class="amount mt-2 sm:mt-0 sm:font-bold"><?= $var["totalSukaRela"] ?></div>
                     </div>
                 </div>
             </div>
@@ -105,13 +123,21 @@
                         sudah banyak
                         )</span>
                 </div>
-                <button class="text-black font-bold rounded-2xl p-2 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">Add
-                    View User Payment
-                </button>
-                <button
-                    class="text-black font-bold rounded-2xl p-2 mt-2 mb-4 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">Add
-                    View User List
-                </button>
+
+                <form action="payment_verification.php">
+                    <!-- INI LINK KE PAYMENT VERIFICATION -->
+                    <button class="text-black font-bold rounded-2xl p-2 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">Add
+                        View User Payment
+                    </button>
+                </form>
+
+                <form action="user_verification.php">
+                    <!-- BUAT LINK KE USER VERIFICATION -->
+                    <button
+                        class="text-black font-bold rounded-2xl p-2 mt-2 mb-4 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto">Add
+                        View User List
+                    </button>
+                </form>
             </div>
 
 

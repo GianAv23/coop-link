@@ -1,3 +1,30 @@
+<?php
+require_once '../dbCOOPLINK.php';
+
+if( !isset($_SESSION["nasabahID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+    header("Location: login_form.php");
+    exit;
+}
+
+if( isset($_POST["kategori_simpanan"]) && isset($_POST["tgl_pembayaran"]) && isset($_POST["amount"]) ){
+
+    $file_path_bukti_bayar = foto_Path("BUKTI_TRANSFER");
+
+    if( $file_path_bukti_bayar === "Error" ){ //KALO ADA ERROR JALANIN KODE INI
+        header("Location: payment_form.php");
+        exit;
+    }
+
+    if( pembayaran_Nasabah( $_POST["kategori_simpanan"], $_POST["tgl_pembayaran"], $_POST["amount"], "MASUKIN FILE PATHNYA BUKTI TRANSFER" ) ){ 
+        header("Location: home_user.php");
+        exit;
+    } else {
+        header("Location: payment_form.php");
+        exit;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,8 +81,8 @@
 
                     <select class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" name="kategori_simpanan"
                         id="kategori_simpanan">
-                        <option class="text-cardData bg-bgColor" value="male">Simpanan Wajib</option>
-                        <option class="text-cardData bg-bgColor" value="female">Simpanan Sukarela</option>
+                        <option class="text-cardData bg-bgColor" value="wajib">Simpanan Wajib</option>
+                        <option class="text-cardData bg-bgColor" value="sukarela">Simpanan Sukarela</option>
                     </select>
                 </div>
                 <!-- PAYMENT END -->
@@ -84,7 +111,7 @@
                     </div>
 
                     <div>
-                        <input type="text" name="amount" id="amount" placeholder="Enter amount"
+                        <input type="number" name="amount" id="amount" placeholder="Enter amount"
                             class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                     </div>
                 </div>
@@ -93,7 +120,7 @@
                 <!-- BUTTON START -->
                 <div class="flex flex-row gap-4 mt-2">
 
-                    <a href="index.php"
+                    <a href="home_user.php"
                         class="w-full shadow bg-bgLogo/20 border-dashed border-2 border-cardData py-2 px-4 rounded-full text-center block">
                         <span class="text-cardData font-bold">Cancel</span>
                     </a>

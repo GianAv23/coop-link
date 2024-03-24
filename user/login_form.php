@@ -1,3 +1,17 @@
+<?php
+require_once '../dbCOOPLINK.php';
+
+if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) ){
+    if( cek_Nasabah($_POST["name"], $_POST["passw"]) ){
+        header("Location: home_user.php");
+        exit;
+    }else{
+        header("Location: login_form.php");
+        exit;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,7 +88,7 @@
                             class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                     </div>
 
-                    <a href="change_PASS.php" class="flex justify-end"><span
+                    <a href="change_pass.php" class="flex justify-end"><span
                             class="text-textColor2 font-medium text-sm mt-1">Lupa
                             Password</span></a>
                 </div>
@@ -90,7 +104,7 @@
 
                 <div class="flex justify-center">
                     <span class="text-cardData font-medium text-sm">Don’t have an account? <a
-                            class="text-textColor2 font-bold" href="signUP_PAGE.php">Sign
+                            class="text-textColor2 font-bold" href="signup_form.php">Sign
                             Up</a></span>
                 </div>
                 <!-- BUTTON END -->

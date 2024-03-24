@@ -1,3 +1,37 @@
+<?php
+require_once '../dbCOOPLINK.php';
+
+if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) && isset($_POST["email"]) && isset($_POST["address"]) && isset($_POST["birthday"]) && isset($_POST["gender"]) && isset($_POST["jumlahBayar"]) ){
+
+    if( $_POST["passw1"] === $_POST["passw2"] ){
+
+        $file_path_bukti_bayar = foto_Path("BUKTI_TRANSFER"); // NAME INPUT HARUS BUKTI_TRANSFER
+        $file_path_profile = foto_Path("FOTO_USER"); // NAME INPUT HARUS FOTO_USER
+
+        if( $file_path_bukti_bayar === "Error" && $file_path_profile === "Error" ){ // KALO ADA ERROR FILE IMAGE NYA JALANIN KODE INI
+            header("Location: signup_form.php");
+            exit;
+        }
+        $cek = registrasi_Nasabah($_POST["email"], $_POST["name"], $_POST["passw1"], $_POST["address"], $_POST["gender"], $_POST["birthday"], 
+        $file_path_bukti_bayar, $file_path_profile, $_POST["jumlahBayar"]);
+        if( $cek === "Berhasil" ){ 
+            header("Location: login_form.php");
+            exit;
+        } else {
+            // INI JALAN KETIKA ADA DATA YANG GK LENGKAP ATAU GK SESUAI
+            // RETURN DARI FUNGSI registrasi_Nasabah --> "Berhasil" , "Simpanan Pokok tidak boleh nol" , "Password minimal 8 karakter" , "File bayar Error" , "File foto profile Error" , "Lengkapi datanya" (UNTUK YG INI KAYAK EMAIL / NAME / BIRTH DAY / ADDRESS NYA KOSONG)
+            header("Location: signup_form.php");
+            exit;
+        }
+
+    } else {
+        header("Location: signup_form.php");
+        exit;
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -153,7 +187,7 @@
 
                     <div>
 
-                        <input type="date" name="address" id="alamat" placeholder="Enter your email"
+                        <input type="date" name="birthday" id="alamat" placeholder="Enter your email"
                             class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                     </div>
                 </div>
@@ -176,7 +210,7 @@
                     file:text-sm file:font-semibold
                     file:bg-textColor2 file:text-slate-900
                     hover:file:bg-textColor hover:file:text-cardData
-                    " id="upload" name="upload">
+                    " id="upload" name="FOTO_USER">
 
                     </div>
                 </div>
@@ -189,9 +223,13 @@
 
                 <!-- BUTTON START -->
                 <div class="flex flex-row">
-                    <button class="w-full shadow bg-textColor2 py-2 px-4 rounded-full" type="submit" name="submit">
-                        <span class="text-textColor font-bold">Sign Up</span>
-                    </button>
+
+                    <form action="login_form.php">
+                        <!-- LINK KE LOGIN KARENA MASIH HARUS DI ACC -->
+                        <button class="w-full shadow bg-textColor2 py-2 px-4 rounded-full" type="submit" name="submit">
+                            <span class="text-textColor font-bold">Sign Up</span>
+                        </button>
+                    </form>
 
                 </div>
                 <!-- BUTTON END -->

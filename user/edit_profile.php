@@ -1,3 +1,29 @@
+<?php
+require_once '../dbCOOPLINK.php';
+
+if( !isset($_SESSION["nasabahID"]) ){ //KALAU BELUM LOGIN TIDAK BISA MASUK
+    header("Location: login_form.php");
+    exit;
+}
+
+if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) && isset($_POST["gender"]) && isset($_POST["dob"]) && isset($_POST["submit"]) ){
+
+    $path_foto = foto_Path("FOTO_USER"); // SESUAIN NAME DENGAN "FOTO_USER" DI FORM INPUT NAME-NYA
+    if( $path_foto === "Error" ){
+        header("Location: edit_profile.php");
+        exit;
+    }
+
+    if( edit_Profile($_POST["name"], $_POST["email"], $_POST["address"], $_POST["gender"], $_POST["dob"], $path_foto ) ){
+        header("Location: home_user.php");
+        exit;
+    }else{
+        header("Location: edit_profile.php");
+        exit;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,10 +67,10 @@
         </div>
         <!-- HEADER END -->
 
-        <form class="flex flex-col gap-4 md:px-44 lg:px-64 xl:px-80" method="post" enctype="multipart/form-data">
+        <form class="flex flex-col gap-4 md:px-44 lg:px-64 xl:px-80" method="post" enctype="multipart/form-data" action="">
 
             <div>
-                <input type="hidden" name="id" value="<?= $userkontak['idKontak'] ?>">
+                <input type="hidden" name="id">
             </div>
 
             <!-- USERNAME START -->
@@ -58,7 +84,7 @@
                 <div>
 
                     <input type="text" name="name" id="name" placeholder="Enter your username"
-                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" value="">
+                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                 </div>
             </div>
             <!-- USERNAME END -->
@@ -72,7 +98,7 @@
                 </div>
                 <div>
                     <input class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" placeholder="Enter your email"
-                        id="email" type="text" name="email" value="">
+                        id="email" type="email" name="email">
                 </div>
             </div>
             <!-- EMAIL END -->
@@ -87,7 +113,7 @@
 
                 <div>
                     <input type="text" name="address" id="alamat" placeholder="Enter your email"
-                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" value="">
+                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                 </div>
             </div>
             <!-- ADDRESS END -->
@@ -118,7 +144,7 @@
 
                 <div>
 
-                    <input type="date" name="address" id="alamat" placeholder="Enter your email"
+                    <input type="date" name="dob" id="alamat" placeholder="Enter your Date of Birth"
                         class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                 </div>
             </div>
@@ -127,7 +153,7 @@
             <!-- BUTTON START -->
             <div class="flex flex-row gap-2 mt-2">
 
-                <a href="index.php"
+                <a href="home_user.php"
                     class="w-full shadow bg-bgLogo/20 border-dashed border-2 border-cardData py-2 px-4 rounded-full text-center block">
                     <span class="text-cardData font-bold">Cancel</span>
                 </a>

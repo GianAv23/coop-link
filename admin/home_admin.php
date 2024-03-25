@@ -161,30 +161,28 @@ $var = jumlah_Total_Uang();
             </div>
             <!-- Tabungan Sukarela END -->
 
-            <div class="balance rounded-xl mx-4 my-4 sm:my-6 flex flex-col sm:flex-row">
+            <div class="balance rounded-xl mx-4 my-4 sm:my-6 flex flex-col sm:flex-row sm:justify-between">
                 <div class="detail text-xs sm:text-lg mt-5 mx-4 sm:my-6">
-                    <span class="font-bold">Tabungan Wajib</span><span> dibayarkan setiap 1 bulan sekali sebesar Rp
-                        500.000</span><br>
-                    <span class="font-bold">Tabungan Sukarela</span><span> membuat anda menjadi banyak duit ( jika duit
-                        anda
-                        sudah banyak
-                        )</span>
+                    <span>Admin Wajib mengontrol setiap interaksi user</span><br>
+                    <span>untuk alasan keamanan Admin melakukan verifikasi</span>
                 </div>
+                <div class="flex flex-col items-center sm:flex-row">
+                    <form action="payment_verification.php">
+                        <!-- INI LINK KE PAYMENT VERIFICATION -->
+                        <button
+                            class="text-black font-bold text-xs rounded-2xl py-3 px-7 mt-4 mb-2 mx-4 sm:text-base sm:my-6 sm:px-16 sm:py-3">
+                            View User Payment
+                        </button>
+                    </form>
 
-                <form action="payment_verification.php">
-                    <!-- INI LINK KE PAYMENT VERIFICATION -->
-                    <button class="text-black font-bold rounded-2xl p-2 mt-8 mx-4 sm:my-6 sm:px-16 sm:py-3 sm:ms-auto">
-                        View User Payment
-                    </button>
-                </form>
-
-                <form action="user_verification.php">
-                    <!-- BUAT LINK KE USER VERIFICATION -->
-                    <button
-                        class="text-black font-bold rounded-2xl p-2 mt-2 mb-4 mx-4 sm:my-6 sm:px-16 sm:py-3 sm:ms-auto">User
-                        Verification
-                    </button>
-                </form>
+                    <form action="user_verification.php">
+                        <!-- BUAT LINK KE USER VERIFICATION -->
+                        <button
+                            class="text-black font-bold text-xs rounded-2xl py-3 px-9 mt-2 mb-4 mx-4 sm:text-base sm:my-6 sm:px-16 sm:py-3">User
+                            Verification
+                        </button>
+                    </form>
+                </div>
             </div>
 
 

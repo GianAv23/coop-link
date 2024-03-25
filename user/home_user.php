@@ -176,7 +176,7 @@ if (isset($_POST["logout"])) { // LOGOUT HAPUS SEMUA SESSION
             <!-- Tabungan Sukarela END -->
 
             <!-- Add Balance section START -->
-            <div class="balance rounded-xl mx-4 my-4 sm:my-6 flex flex-col sm:flex-row">
+            <div class="balance rounded-xl mx-4 my-4 sm:my-6 flex flex-col sm:flex-row sm:justify-between">
                 <div class="detail text-xs sm:text-lg mt-5 mx-4 sm:my-6">
                     <span class="font-bold">Tabungan Wajib</span><span> dibayarkan setiap 1 bulan sekali sebesar Rp
                         500.000</span><br>
@@ -185,13 +185,15 @@ if (isset($_POST["logout"])) { // LOGOUT HAPUS SEMUA SESSION
                         sudah banyak
                         )</span>
                 </div>
-                <form action="payment_form.php" method="post">
-                    <button
-                        class="text-black font-bold rounded-2xl p-2 mb-8 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 sm:ms-auto"
-                        type="submit" name="addBalance">
-                        Add Balance
-                    </button>
-                </form>
+                <div class="flex justify-center">
+                    <form action="payment_form.php" method="post">
+                        <button
+                            class="text-black font-bold rounded-2xl py-2 px-7 mb-8 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3"
+                            type="submit" name="addBalance">
+                            Add Balance
+                        </button>
+                    </form>
+                </div>
             </div>
             <!-- Add Balance section END -->
 

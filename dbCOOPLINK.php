@@ -30,7 +30,7 @@ function cek_Nasabah($name, $pass){
     $name = strval($name);
     $pass = strval($pass);
     if( $name === "" && $pass === "" ){
-        return "Username and password are required";
+        return "Username and password are required"; //diganti aja return nya jadi string
     }
     global $kunci;
     $sql_CARI_NASABAH = "SELECT * FROM lecture_web.users";
@@ -39,10 +39,10 @@ function cek_Nasabah($name, $pass){
     while($data_db = $queryRes->fetch(PDO::FETCH_ASSOC)){
         if( $data_db["namaUser"] == $name && password_verify($pass, $data_db["passwordUser"]) ){
             $_SESSION["nasabahID"] = $data_db["userID"];
-            return "Valid";
+            return "Valid"; //diganti returnnya jadi valid, karena benar
         }
     }
-    return "Invalid username or password";
+    return "Invalid username or password"; //diganti aja return nya jadi string
 }
 
 function list_All_User(){

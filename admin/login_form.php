@@ -1,10 +1,18 @@
 <?php
 require_once '../dbCOOPLINK.php';
 if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) ){
+
+    // $cek = (cek_Admin($_POST["name"], $_POST["passw"]));
+
+    //if($cek === "Valid")
+    // header("Location: home_admin.php");
+    //     exit;
+
     if( cek_Admin($_POST["name"], $_POST["passw"]) ){
         header("Location: home_admin.php");
         exit;
     }else{
+        // ini nanti jadi $error_message = $cek; (tanpa header dan exit)
         header("Location: login_form.php");
         exit;
     }

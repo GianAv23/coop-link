@@ -2,7 +2,7 @@
 require_once '../dbCOOPLINK.php';
 
 if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) ){
-    $cek = (cek_Nasabah($_POST["name"], $_POST["passw"]) );
+    $cek = (cek_Nasabah($_POST["name"], $_POST["passw"]) ); //
     
     if($cek === "Valid"){
         header("Location: home_user.php");

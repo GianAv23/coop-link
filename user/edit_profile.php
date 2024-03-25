@@ -12,7 +12,7 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
 
     $path_foto = foto_Path("FOTO_USER"); // SESUAIN NAME DENGAN "FOTO_USER" DI FORM INPUT NAME-NYA
     if( $path_foto === "Error" ){
-        header("Location: edit_profile.php");
+        header("Location: edit_profile.php"); //ini nanti error_message aja
         exit;
     }
 
@@ -20,7 +20,7 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
         header("Location: home_user.php");
         exit;
     }else{
-        header("Location: edit_profile.php");
+        header("Location: edit_profile.php"); //ini error message aja 
         exit;
     }
 }
@@ -129,7 +129,8 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
                     </label>
                 </div>
 
-                <select class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" name="gender" id="gender" value="<?= $var["kelamin"] ?>">
+                <select class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" name="gender" id="gender"
+                    value="<?= $var["kelamin"] ?>">
                     <option class="text-cardData bg-bgColor" value="male">Male</option>
                     <option class="text-cardData bg-bgColor" value="female">Female</option>
 
@@ -148,7 +149,8 @@ if( isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["address"]) 
                 <div>
 
                     <input type="date" name="dob" id="alamat" placeholder="Enter your Date of Birth"
-                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData" value="<?= $var["tanggalLahir"] ?>">
+                        class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData"
+                        value="<?= $var["tanggalLahir"] ?>">
                 </div>
             </div>
             <!-- DATE OF BIRTH -->

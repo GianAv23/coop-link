@@ -9,7 +9,7 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
         $file_path_profile = foto_Path("FOTO_USER"); // NAME INPUT HARUS FOTO_USER
 
         if( $file_path_bukti_bayar === "Error" && $file_path_profile === "Error" ){ // KALO ADA ERROR FILE IMAGE NYA JALANIN KODE INI
-            header("Location: signup_form.php");
+            header("Location: signup_form.php"); //bikin jadi error_message aja
             exit;
         }
         $cek = registrasi_Nasabah($_POST["email"], $_POST["name"], $_POST["passw1"], $_POST["address"], $_POST["gender"], $_POST["birthday"], 

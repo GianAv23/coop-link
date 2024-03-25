@@ -1,16 +1,24 @@
 <?php
 require_once '../dbCOOPLINK.php';
 
-if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) ){
-    $cek = (cek_Nasabah($_POST["name"], $_POST["passw"]) );
+if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) && isset($_POST['g-recaptcha-response']) ){
+    $recaptcha_response = $_POST['g-recaptcha-response'];
     
-    if($cek === "Valid"){
-        header("Location: home_user.php");
-        exit;
-    }else{
-        $error_message = $cek;
+    if(validate_recaptcha($recaptcha_response)) {
+        $cek = (cek_Nasabah($_POST["name"], $_POST["passw"]));
+        
+        if($cek === "Valid"){
+            header("Location: home_user.php");
+            exit;
+        }else{
+            $error_message = $cek;
+        }
+    } else {
+        $error_message = 'reCAPTCHA verification failed, please try again.';
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +28,7 @@ if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) )
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Log In | CoopLink</title>
     <script>
@@ -108,10 +117,16 @@ if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) )
                 </div>
                 <!-- PASSWORD END -->
 
+                <!-- CAPTCHA START -->
+                <div class="g-recaptcha flex justify-center items-center"
+                    data-sitekey="6LeQr6IpAAAAAFwL29Ssdz2thuqBv4-r8EWIEi11">
+                </div>
+                <!-- CAPTCHA END -->
+
                 <!-- BUTTON START -->
                 <div class="mt-6">
-                    <button type="submit" name="submit" class="bg-textColor2 w-full py-2 rounded-full"><span
-                            class="text-textColor font-bold">Log
+                    <button type="submit" name="submit"
+                        class="bg-textColor2 w-full py-2 rounded-full font-bold text-textColor hover:bg-textColor2/40 hover:text-textColor2"><span>Log
                             In</span>
                     </button>
                 </div>

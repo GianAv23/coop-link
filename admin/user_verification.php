@@ -49,24 +49,56 @@ if( isset($_POST["del"]) ){
 </head>
 
 <body>
-    <div class="bg-bgBlack w-screen min-h-screen overflow-hidden">
+    <div class="bg-bgBlack w-screen min-h-screen px-10 overflow-hidden">
 
         <!-- NAVBAR START -->
-        <div class="flex flex-row px-10 justify-between pt-8">
+        <div class="sticky top-0 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
+
+            <!-- PROFIL BUTTON START -->
+            <div class="mt-1 p-3 absolute max-h-0 right-0 top-14 " id="subModal" style="display:none ;">
+
+                <div class="modalProfile bg-bgLogo backdrop-blur-lg rounded-xl p-4 items-center">
+                    <div class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-2 items-start">
+                            <span class="font-bold text-bgColor">Admin</span>
+                        </div>
+
+                        <form action="user_list.php">
+                            <button class="flex flex-row justify-between" type="submit">
+                                <span class="text-bgColor">View User List</span>
+                            </button>
+                        </form>
+
+                        <form action="" method="post">
+                            <button
+                                class="bg-bgColor/80 rounded-full border-2 border-dashed border-cardData/50 px-3 py-2"
+                                type="submit" name="logout">
+                                <span class="text-bgWhite font-semibold text-sm">
+                                    Log Out
+                                </span>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- PROFIL BUTTON END -->
+
             <div class="flex items-center justify-start">
                 <span class="text-white font-semibold text-xl">
                     Coop<span class="text-textColor2">Link</span>
                 </span>
             </div>
 
-            <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center">
+            <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center cursor-pointer"
+                onclick="toogleModal()">
 
                 <span class="text-white font-semibold ml-5">
                     Admin
                 </span>
 
-                <div class="ml-3 w-7 h-7 rounded-full border border-bgWhite bg-cover bg-center"
-                    style="background-image: url(assets/test.jpg);">
+                <div class="ml-3 w-7 h-7 rounded-full bg-cover bg-center"
+                    style="background-image: url('../images/profilAdmin.svg');">
                 </div>
 
 
@@ -76,13 +108,13 @@ if( isset($_POST["del"]) ){
 
         <!-- BODY START -->
         <div class="flex flex-row justify-between">
-            <div class="w-full h-full bg-bgBlack rounded-3xl border border-textColor2 m-8">
+            <div class="w-full h-full bg-bgBlack rounded-3xl border border-textColor2">
                 <div class="flex flex-col p-6 gap-4 shrink-0">
                     <div class="mb-3 flex items-center gap-4">
                         <!-- untuk kembali ke home -->
                         <button
                             class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center"><span
-                                class="font-medium text-base" onclick="window.location.href='home_admin.php'"> 
+                                class="font-medium text-base" onclick="window.location.href='home_admin.php'">
                                 <!-- on click buat back ke halaman home -->
                                 < Back </span></button>
                         <span class="font-normal text-bgWhite text-lg lg:text-2xl">User Registration
@@ -100,31 +132,31 @@ if( isset($_POST["del"]) ){
 
                                 <div class="flex flex-col gap-0">
                                     <span class="font-semibold text-bgWhite text-lg">
-                                        <?= $v["namaRegis"] ?><!-- value nama nasabah -->
+                                        <?= $v["namaRegis"] ?>
+                                        <!-- value nama nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm text-textColor2">
-                                        <?= $v["emailRegis"] ?><!-- value email nasabah -->
+                                        <?= $v["emailRegis"] ?>
+                                        <!-- value email nasabah -->
                                     </span>
                                     <span class="font-normal text-bgWhite text-sm">
-                                        <?= $v["birtDRegis"] . " | " . $v["alamRegis"] ?><!-- value tanggal pembayaran | value alamat -->
+                                        <?= $v["birtDRegis"] . " | " . $v["alamRegis"] ?>
+                                        <!-- value tanggal pembayaran | value alamat -->
                                     </span>
                                 </div>
 
                                 <div class="mt-6 flex flex-row justify-between md:gap-10 md:pb-4">
-                                    <button class="rounded-xl bg-bgColor border border-textColor2 px-4 py-1">
-                                        <span class="font-medium text-textColor2 text-xs md:text-sm">
-                                            <?php $v["filebayarRegis"] ?>
-                                        </span>
-                                    </button>
 
                                     <div class="flex flex-row gap-2">
                                         <form action="" method="post">
-                                            <button class="rounded-xl bg-bgLogo px-4 py-1" type="submit" name="acc" value="<?= $v["regisID"] ?>">
+                                            <button class="rounded-xl bg-bgLogo px-4 py-1" type="submit" name="acc"
+                                                value="<?= $v["regisID"] ?>">
                                                 <span class="font-medium text-bgColor text-xs md:text-sm">Accept</span>
                                             </button>
-    
-    
-                                            <button class="rounded-xl border border-textColor2 px-4 py-1" type="submit" name="del" value="<?= $v["regisID"] ?>">
+
+
+                                            <button class="rounded-xl border border-textColor2 px-4 py-1" type="submit"
+                                                name="del" value="<?= $v["regisID"] ?>">
                                                 <span class="font-medium text-bgWhite text-xs md:text-sm">Reject</span>
                                             </button>
                                         </form>

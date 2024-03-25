@@ -129,9 +129,14 @@ if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"])
 
 
                 <!-- BUTTON START -->
-                <div class="mt-6">
-                    <button type="submit" name="submit" class="bg-textColor2 w-full py-2 rounded-full"><span
-                            class="text-textColor font-bold">Change Password</span>
+                <div class="mt-6 flex flex-row gap-6">
+                    <a href="home_user.php"
+                        class="w-full shadow bg-bgLogo/20 border-dashed border-2 border-cardData py-2 px-4 rounded-full text-center block">
+                        <span class="text-cardData font-bold">Cancel</span>
+                    </a>
+                    <button type="submit" name="submit"
+                        class="bg-textColor2 w-full py-2 rounded-full font-bold text-textColor hover:bg-textColor2/40 hover:text-textColor2"><span>Change
+                            Password</span>
                     </button>
                 </div>
                 <!-- BUTTON END -->

@@ -23,7 +23,7 @@ if (isset($_POST["logout"])) { // LOGOUT HAPUS SEMUA SESSION
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Home</title>
+    <title>Home | CoopLink</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
     tailwind.config = {
@@ -45,10 +45,10 @@ if (isset($_POST["logout"])) { // LOGOUT HAPUS SEMUA SESSION
 
 <body>
 
-    <div class="w-screen min-h-screen px-10 pb-10">
+    <div class="bg-bgBlack w-screen h-screen px-10 items-center overflow-x-hidden">
 
         <!-- NAVBAR START -->
-        <div class="sticky top-0 bg-black/30 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
+        <div class="sticky top-0  backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
 
             <!-- PROFIL BUTTON START -->
             <div class="mt-1 p-3 absolute max-h-0 right-0 top-14" id="subModal" style="display:none ;">
@@ -110,14 +110,15 @@ if (isset($_POST["logout"])) { // LOGOUT HAPUS SEMUA SESSION
         </div>
         <!-- NAVBAR END -->
 
+
         <!-- CONTENT START -->
 
-        <div class="content rounded-xl border-2 text-white">
+        <div class=" w-full content rounded-3xl border-2 text-white">
             <!-- Hi User & History Button START -->
             <div class="flex flex-row justify-between items-center">
-                <div class="user mt-4 ms-4 sm:ms-10 sm:mt-10 sm:text-3xl">Hi, Xiao Dylan LTD.</div>
+                <div class="user mt-4 ms-4 sm:ms-10 sm:mt-10 sm:text-3xl">Hi, <?= $var["namaUser"] ?></div>
                 <form action="history_user.php" method="post">
-                    <button class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-3xl"
+                    <button class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-xl"
                         type="submit" name="history">
                         History
                     </button>
@@ -180,15 +181,12 @@ if (isset($_POST["logout"])) { // LOGOUT HAPUS SEMUA SESSION
                 <div class="detail text-xs sm:text-lg mt-5 mx-4 sm:my-6">
                     <span class="font-bold">Tabungan Wajib</span><span> dibayarkan setiap 1 bulan sekali sebesar Rp
                         500.000</span><br>
-                    <span class="font-bold">Tabungan Sukarela</span><span> membuat anda menjadi banyak duit ( jika duit
-                        anda
-                        sudah banyak
-                        )</span>
+                    <span class="font-bold">Tabungan Sukarela</span><span> dibayarkan secara sukarela</span>
                 </div>
                 <div class="flex justify-center">
                     <form action="payment_form.php" method="post">
                         <button
-                            class="text-black font-bold rounded-2xl py-2 px-7 mb-8 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3"
+                            class="text-black font-bold rounded-2xl py-2 px-7 mb-8 mt-8 mx-4 sm:my-6 sm:px-20 sm:py-3 hover:bg-textColor2/40 hover:text-textColor2"
                             type="submit" name="addBalance">
                             Add Balance
                         </button>
@@ -197,13 +195,10 @@ if (isset($_POST["logout"])) { // LOGOUT HAPUS SEMUA SESSION
             </div>
             <!-- Add Balance section END -->
 
-            <!-- <footer
-                class="text-center text-xs sm:text-lg rounded-full border border-gray-800 mt-4 mx-4 mb-2 p-1 text-gray-800">
-                <span>© 2024 | UTS Web Programming LEC</span>
-            </footer> -->
         </div>
+    </div>
 
-        <!-- CONTENT END -->
+    <!-- CONTENT END -->
     </div>
 
     <script>

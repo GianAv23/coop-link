@@ -52,7 +52,11 @@ if( isset($_POST["kategori_simpanan"]) && isset($_POST["tgl_pembayaran"]) && iss
 </head>
 
 <body>
-    <div class="bg-bgColor w-screen min-h-screen">
+    <div class="relative bg-bgColor w-screen min-h-screen">
+
+        <!-- ELLIIPSE START -->
+        <img class="absolute z-0 top-0 left-0" src="../assets/ellipse2.svg" alt="">
+        <!-- ELLIIPSE END -->
 
         <div class="w-screen min-h-screen flex flex-col justify-center px-10 md:px-32 lg:px-60 xl:px-96">
 
@@ -71,7 +75,7 @@ if( isset($_POST["kategori_simpanan"]) && isset($_POST["tgl_pembayaran"]) && iss
 
 
             <!-- FORM START -->
-            <form class="flex flex-col gap-6 mt-8" method="post" enctype="multipart/form-data">
+            <form class="z-10 flex flex-col gap-6 mt-8" method="post" enctype="multipart/form-data">
                 <!-- PAYMENT START -->
                 <div class="flex flex-col gap-1">
                     <div>
@@ -142,8 +146,10 @@ if( isset($_POST["kategori_simpanan"]) && isset($_POST["tgl_pembayaran"]) && iss
                         class="w-full shadow bg-bgLogo/20 border-dashed border-2 border-cardData py-2 px-4 rounded-full text-center block">
                         <span class="text-cardData font-bold">Cancel</span>
                     </a>
-                    <button class="w-full shadow bg-bgLogo py-2 px-4 rounded-full" type="submit" name="submit">
-                        <span class="text-bgColor font-bold">Submit</span>
+                    <button
+                        class="bg-textColor2 w-full py-2 rounded-full font-bold text-textColor hover:bg-textColor2/40 hover:text-textColor2"
+                        type="submit" name="submit">
+                        <span>Submit</span>
                     </button>
 
                 </div>

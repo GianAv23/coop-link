@@ -44,10 +44,10 @@ if( isset($_POST["del"]) ){
 </head>
 
 <body>
-    <div class="bg-bgBlack w-screen min-h-screen overflow-hidden">
+    <div class="bg-bgBlack w-screen min-h-screen px-10 pb-10 overflow-hidden">
 
         <!-- NAVBAR START -->
-        <div class="sticky top-0 bg-black/30 backdrop-blur-md flex flex-row px-10 justify-between py-5 my-4">
+        <div class="sticky top-0 backdrop-blur-md flex flex-row px-10 justify-between py-5 my-4">
 
             <!-- PROFIL BUTTON START -->
             <div class="mt-1 p-3 absolute max-h-0 right-0 top-14 " id="subModal" style="display:none ;">
@@ -172,7 +172,7 @@ if( isset($_POST["del"]) ){
         </div>
     </div> -->
     </div>
-    <script>
+    <!-- <script>
     let subModal = document.getElementById("subModal");
 
     function toogleModal() {
@@ -182,7 +182,7 @@ if( isset($_POST["del"]) ){
             subModal.style.display = "none";
         }
     }
-    </script>
+    </script> -->
 
 </body>
 

@@ -39,10 +39,10 @@ $var = history_Admin();
 </head>
 
 <body>
-    <div class="w-screen min-h-screen px-10 pb-10">
+    <div class="bg-bgBlack w-screen min-h-screen px-10 pb-10 overflow-x-hidden">
 
         <!-- NAVBAR START -->
-        <div class="sticky top-0 bg-black/30 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
+        <div class="sticky top-0 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
 
             <!-- PROFIL BUTTON START -->
             <div class="mt-1 p-3 absolute max-h-0 right-0 top-14 " id="subModal" style="display:none ;">

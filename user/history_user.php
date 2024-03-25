@@ -50,13 +50,13 @@ foreach($var as $ver){
 </head>
 
 <body>
-    <div class="bg-bgBlack w-screen min-h-screen overflow-hidden">
+    <div class="bg-bgBlack w-screen min-h-screen px-10 overflow-y-hidden">
 
         <!-- NAVBAR START -->
-        <div class="sticky top-0 bg-black/30 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
+        <div class="sticky top-0 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
 
             <!-- PROFIL BUTTON START -->
-            <div class="mt-1 p-3 absolute max-h-0 right-0 top-14" id="subModal" style="display:none ;">
+            <div class="mt-1 p-3 absolute z-10 max-h-0 right-0 top-14" id="subModal" style="display:none ;">
 
                 <div class="modalProfile bg-bgLogo backdrop-blur-lg rounded-xl p-4 items-center">
                     <div class="flex flex-col gap-4">
@@ -130,7 +130,7 @@ foreach($var as $ver){
                     </div>
 
 
-                    <div class="h-[600px] flex-grow overflow-y-scroll flex flex-col gap-4">
+                    <div class=" h-[600px] flex-grow overflow-y-scroll flex flex-col gap-4">
 
                         <!-- INI YANG DI LOOP PID -->
                         <?php foreach($var as $v) : ?>
@@ -203,7 +203,7 @@ foreach($var as $ver){
     </div> -->
     </div>
 
-    <script>
+    <!-- <script>
     let subModal = document.getElementById("subModal");
 
     function toogleModal() {
@@ -213,7 +213,7 @@ foreach($var as $ver){
             subModal.style.display = "none";
         }
     }
-    </script>
+    </script> -->
 
 
 </body>

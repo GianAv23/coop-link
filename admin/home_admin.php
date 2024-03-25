@@ -22,7 +22,7 @@ $var = jumlah_Total_Uang();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Home</title>
+    <title>Home | CoopLink</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
     tailwind.config = {
@@ -44,10 +44,10 @@ $var = jumlah_Total_Uang();
 
 <body>
 
-    <div class="w-screen min-h-screen px-10 pb-10">
+    <div class="bg-bgBlack w-screen min-h-screen px-10 pb-10 overflow-x-hidden">
 
         <!-- NAVBAR START -->
-        <div class="sticky top-0 bg-black/30 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
+        <div class="sticky top-0 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
 
             <!-- PROFIL BUTTON START -->
             <div class="mt-1 p-3 absolute max-h-0 right-0 top-14 " id="subModal" style="display:none ;">
@@ -102,14 +102,14 @@ $var = jumlah_Total_Uang();
         <!-- NAVBAR END -->
 
 
-        <div class="content rounded-xl border-2 text-white">
+        <div class="content rounded-3xl border-2 text-white">
             <!-- Hi User & History Button START -->
             <div class="flex flex-row justify-between items-center">
-                <div class="user mt-4 ms-4 sm:ms-10 sm:mt-10 sm:text-3xl">Hi, Xiao Dylan LTD.</div>
+                <div class="user mt-4 ms-4 sm:ms-10 sm:mt-10 sm:text-3xl">Hi, Admin</div>
 
                 <form action="history_admin.php">
                     <!-- INI GW BUAT LINK KE HISTORY ADMIN -->
-                    <button class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-3xl">
+                    <button class="rounded-full border border-bgWhite px-4 mt-4 me-4 sm:ms-10 sm:mt-10 sm:text-xl">
                         History
                     </button>
                 </form>
@@ -170,7 +170,7 @@ $var = jumlah_Total_Uang();
                     <form action="payment_verification.php">
                         <!-- INI LINK KE PAYMENT VERIFICATION -->
                         <button
-                            class="text-black font-bold text-xs rounded-2xl py-3 px-7 mt-4 mb-2 mx-4 sm:text-base sm:my-6 sm:px-16 sm:py-3">
+                            class="text-black font-bold text-xs rounded-2xl py-3 px-7 mt-4 mb-2 mx-4 sm:text-base sm:my-6 sm:px-16 sm:py-3 hover:bg-textColor2/40 hover:text-textColor2">
                             View User Payment
                         </button>
                     </form>
@@ -178,7 +178,7 @@ $var = jumlah_Total_Uang();
                     <form action="user_verification.php">
                         <!-- BUAT LINK KE USER VERIFICATION -->
                         <button
-                            class="text-black font-bold text-xs rounded-2xl py-3 px-9 mt-2 mb-4 mx-4 sm:text-base sm:my-6 sm:px-16 sm:py-3">User
+                            class="text-black font-bold text-xs rounded-2xl py-3 px-9 mt-2 mb-4 mx-4 sm:text-base sm:my-6 sm:px-16 sm:py-3 hover:bg-textColor2/40 hover:text-textColor2">User
                             Verification
                         </button>
                     </form>

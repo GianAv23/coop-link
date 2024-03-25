@@ -54,7 +54,11 @@ if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"])
 </head>
 
 <body>
-    <div class="w-screen min-h-screen bg-bgColor">
+    <div class="relative w-screen min-h-screen bg-bgColor">
+
+        <!-- ELLIIPSE START -->
+        <img class="absolute z-0 top-0 left-0" src="../assets/ellipse2.svg" alt="">
+        <!-- ELLIIPSE END -->
 
         <div class="w-screen min-h-screen flex flex-col justify-center py-10 px-8">
 
@@ -71,7 +75,7 @@ if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"])
             </div>
             <!-- HEADER END -->
 
-            <form class="flex flex-col gap-6 md:px-44 lg:px-64 xl:px-80" method="post" action="">
+            <form class="z-10 flex flex-col gap-6 md:px-44 lg:px-64 xl:px-80" method="post" action="">
 
                 <!-- ERROR MESSAGE START -->
                 <?php if (!empty($error_message)) : ?>
@@ -137,9 +141,16 @@ if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"])
 
 
                 <!-- BUTTON START -->
-                <div class="mt-6">
-                    <button type="submit" name="submit" class="bg-textColor2 w-full py-2 rounded-full"><span
-                            class="text-textColor font-bold">Change Password</span>
+                <div class="mt-6 flex flex-row gap-6">
+
+                    <a href="home_admin.php"
+                        class="w-full shadow bg-bgLogo/20 border-dashed border-2 border-cardData py-2 px-4 rounded-full text-center block">
+                        <span class="text-cardData font-bold">Cancel</span>
+                    </a>
+
+                    <button type="submit" name="submit"
+                        class="bg-textColor2 w-full py-2 rounded-full font-bold text-textColor hover:bg-textColor2/40 hover:text-textColor2"><span>Change
+                            Password</span>
                     </button>
                 </div>
                 <!-- BUTTON END -->

@@ -1,38 +1,34 @@
 <?php
 require_once '../dbCOOPLINK.php';
 
-if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) && isset($_POST["email"]) && isset($_POST["address"]) && isset($_POST["birthday"]) && isset($_POST["gender"]) && isset($_POST["jumlahBayar"]) && isset($_POST["submit"])){
+if (isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) && isset($_POST["email"]) && isset($_POST["address"]) && isset($_POST["birthday"]) && isset($_POST["gender"]) && isset($_POST["jumlahBayar"]) && isset($_POST["submit"]) && isset($_POST['g-recaptcha-response'])) {
+    $recaptcha_response = $_POST['g-recaptcha-response'];
 
-    if( $_POST["passw1"] === $_POST["passw2"] ){
+    if (validate_recaptcha($recaptcha_response)) {
+        if ($_POST["passw1"] === $_POST["passw2"]) {
+            $file_path_bukti_bayar = foto_Path("BUKTI_TRANSFER");
+            $file_path_profile = foto_Path("FOTO_USER");
 
-        $file_path_bukti_bayar = foto_Path("BUKTI_TRANSFER"); // NAME INPUT HARUS BUKTI_TRANSFER
-        $file_path_profile = foto_Path("FOTO_USER"); // NAME INPUT HARUS FOTO_USER
+            if ($file_path_bukti_bayar === "Error" && $file_path_profile === "Error") {
+                $error_message = "Error uploading files";
+            } else {
+                $cek = registrasi_Nasabah($_POST["email"], $_POST["name"], $_POST["passw1"], $_POST["address"], $_POST["gender"], $_POST["birthday"], $file_path_bukti_bayar, $file_path_profile, $_POST["jumlahBayar"]);
 
-        if( $file_path_bukti_bayar === "Error" && $file_path_profile === "Error" ){ // KALO ADA ERROR FILE IMAGE NYA JALANIN KODE INI
-            header("Location: signup_form.php"); //bikin jadi error_message aja
-            exit;
-        }
-        $cek = registrasi_Nasabah($_POST["email"], $_POST["name"], $_POST["passw1"], $_POST["address"], $_POST["gender"], $_POST["birthday"], 
-        $file_path_bukti_bayar, $file_path_profile, $_POST["jumlahBayar"]);
-        if( $cek === "Berhasil" ){ 
-            header("Location: login_form.php");
-            exit;
+                if ($cek === "Berhasil") {
+                    header("Location: login_form.php");
+                    exit;
+                } else {
+                    $error_message = $cek;
+                }
+            }
         } else {
-            // INI JALAN KETIKA ADA DATA YANG GK LENGKAP ATAU GK SESUAI
-            // RETURN DARI FUNGSI registrasi_Nasabah --> "Berhasil" , "Simpanan Pokok tidak boleh nol" , "Password minimal 8 karakter" , "File bayar Error" , "File foto profile Error" , "Lengkapi datanya" (UNTUK YG INI KAYAK EMAIL / NAME / BIRTH DAY / ADDRESS NYA KOSONG)
-
-            $error_message = $cek;
-            // header("Location: signup_form.php");
-            // exit;
+            $error_message = "Passwords must match";
         }
-
     } else {
-        $error_message = $cek;
-        // header("Location: signup_form.php");
-        // exit;
+        $error_message = 'reCAPTCHA verification failed, please try again.';
     }
-
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +38,7 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Sign Up | CoopLink</title>
     <script>
@@ -62,13 +59,13 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
 </head>
 
 <body>
-    <div class="relative w-screen min-h-screen bg-bgColor">
+    <div class="relative w-screen min-h-screen bg-bgColor overflow-x-hidden">
 
         <!-- ELLIIPSE START -->
         <img class="absolute z-0 top-0 left-0" src="../assets/ellipse2.svg" alt="">
         <!-- ELLIIPSE END -->
 
-        <div class="w-screen min-h-screen flex flex-col justify-center py-8 px-10 md:px-32 lg:px-60 xl:px-80">
+        <div class="w-screen min-h-screen flex flex-col justify-center py-20 px-10 md:px-32 lg:px-60 xl:px-80">
             <!-- HEADER START -->
             <div class="flex flex-col gap-2 mb-8 items-center">
                 <!-- LOGO START -->
@@ -170,7 +167,7 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
 
                     <div>
 
-                        <input type="text" name="address" id="alamat" placeholder="Enter your email"
+                        <input type="text" name="address" id="alamat" placeholder="Enter your address"
                             class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                     </div>
                 </div>
@@ -202,17 +199,11 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
 
                     <div>
 
-                        <input type="date" name="birthday" id="alamat" placeholder="Enter your email"
+                        <input type="date" name="birthday" id="alamat" placeholder="Enter your date of birth"
                             class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                     </div>
                 </div>
                 <!-- DATE OF BIRTH -->
-
-
-                <!-- <div class="flex flex-col gap-1 justify-center items-center">
-                    <span class="text-cardData font-medium text-base">Hang on Buddy</span>
-                    <span class="text-cardData font-bold text-xl">Almost There</span>
-                </div> -->
 
                 <!-- UPLOAD PROFILE PICTURE START -->
                 <div class="mb-4 gap-2 flex flex-col">
@@ -240,7 +231,7 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
                     </div>
 
                     <div>
-                        <input type="number" name="jumlahBayar" id="jumlahBayar" placeholder="Enter amount"
+                        <input type="number" name="jumlahBayar" id="jumlahBayar" placeholder="Enter nominal amount"
                             class="rounded-lg w-full bg-bgLogo/20 py-3 px-4 text-cardData">
                     </div>
                 </div>
@@ -263,8 +254,11 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
                 </div>
                 <!-- UPLOAD BUKTI TRF END -->
 
-                <!-- CAPCTHA START -->
-                <!-- CAPCTHA END -->
+                <!-- CAPTCHA START -->
+                <div class="g-recaptcha flex justify-center items-center"
+                    data-sitekey="6LeQr6IpAAAAAFwL29Ssdz2thuqBv4-r8EWIEi11">
+                </div>
+                <!-- CAPTCHA END -->
 
                 <!-- BUTTON START -->
                 <div class="flex flex-row">

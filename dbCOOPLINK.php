@@ -231,7 +231,7 @@ function history_Admin(){
 function history_Nasabah(){
     global $kunci;
     $id = $_SESSION["nasabahID"];
-    $sql_HISTORY_NASABAH = "SELECT namaUser, kategori, statusTf, jmlhTf, tanggalTf FROM transaksi INNER JOIN users ON transaksi.userID = users.userID WHERE users.userID = ? ORDER BY tfID DESC";
+    $sql_HISTORY_NASABAH = "SELECT namaUser, fotoProfil, kategori, statusTf, jmlhTf, tanggalTf FROM transaksi INNER JOIN users ON transaksi.userID = users.userID WHERE users.userID = ? ORDER BY tfID DESC";
     $queryRes = $kunci->prepare($sql_HISTORY_NASABAH);
     $queryRes->execute([$id]);
     $arrList = [];

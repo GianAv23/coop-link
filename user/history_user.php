@@ -12,8 +12,9 @@ if( !isset($_POST["history"]) ){
     header("Location: home_user.php");
     exit;
 }
-$namauser = "";
+// $namauser = "";
 foreach($var as $ver){
+    $poto = $ver["fotoProfil"];
     $namauser = $ver["namaUser"];
 }
 ?>
@@ -52,25 +53,64 @@ foreach($var as $ver){
     <div class="bg-bgBlack w-screen min-h-screen overflow-hidden">
 
         <!-- NAVBAR START -->
-        <div class="flex flex-row px-10 justify-between pt-10">
+        <div class="sticky top-0 bg-black/30 backdrop-blur-md flex flex-row px-4 justify-between py-5 my-4">
+
+            <!-- PROFIL BUTTON START -->
+            <div class="mt-1 p-3 absolute max-h-0 right-0 top-14" id="subModal" style="display:none ;">
+
+                <div class="modalProfile bg-bgLogo backdrop-blur-lg rounded-xl p-4 items-center">
+                    <div class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-2 items-start">
+                            <div class="rounded-full w-12 h-12 bg-white bg-center bg-cover"
+                                style="background-image: url(<?= $poto ?>);">
+                            </div>
+
+                            <span class="font-bold text-bgColor"><?= $namauser ?></span>
+                        </div>
+
+                        <form action="edit_profile.php" method="post">
+                            <button class="flex flex-row justify-between" type="submit">
+                                <span class="text-bgColor">View Profile</span>
+                            </button>
+                        </form>
+
+                        <form action="change_pass.php" method="post">
+                            <button class="flex flex-row justify-between" type="submit" name="changePassw">
+                                <span class="text-bgColor">Change Password</span>
+                            </button>
+                        </form>
+
+                        <form action="" method="post">
+                            <div></div>
+                            <button
+                                class="bg-bgColor/80 rounded-full border-2 border-dashed border-cardData/50 px-3 py-2"
+                                type="submit" name="logout">
+                                <span class="text-bgWhite font-semibold text-sm">
+                                    Log Out
+                                </span>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- PROFIL BUTTON END -->
+
             <div class="flex items-center justify-start">
                 <span class="text-white font-semibold text-xl">
                     Coop<span class="text-textColor2">Link</span>
                 </span>
             </div>
 
-            <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center">
-
+            <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center cursor-pointer"
+                onclick="toogleModal()">
                 <span class="text-white font-semibold ml-5">
                     <?= $namauser ?>
                     <!-- value nama nasabah -->
                 </span>
-
                 <div class="ml-3 w-7 h-7 rounded-full border border-bgWhite bg-cover bg-center"
-                    style="background-image: url(assets/test.jpg);">
+                    style="background-image: url(<?= $poto ?>);">
                 </div>
-
-
             </div>
         </div>
         <!-- NAVBAR END -->
@@ -162,6 +202,18 @@ foreach($var as $ver){
         </div>
     </div> -->
     </div>
+
+    <script>
+    let subModal = document.getElementById("subModal");
+
+    function toogleModal() {
+        if (subModal.style.display === "none") {
+            subModal.style.display = "block";
+        } else {
+            subModal.style.display = "none";
+        }
+    }
+    </script>
 
 
 </body>

@@ -47,21 +47,53 @@ if( isset($_POST["del"]) ){
     <div class="bg-bgBlack w-screen min-h-screen overflow-hidden">
 
         <!-- NAVBAR START -->
-        <div class="flex flex-row px-10 justify-between pt-8">
+        <div class="sticky top-0 bg-black/30 backdrop-blur-md flex flex-row px-10 justify-between py-5 my-4">
+
+            <!-- PROFIL BUTTON START -->
+            <div class="mt-1 p-3 absolute max-h-0 right-0 top-14 " id="subModal" style="display:none ;">
+
+                <div class="modalProfile bg-bgLogo backdrop-blur-lg rounded-xl p-4 items-center">
+                    <div class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-2 items-start">
+                            <span class="font-bold text-bgColor">Admin</span>
+                        </div>
+
+                        <form action="user_list.php">
+                            <button class="flex flex-row justify-between" type="submit">
+                                <span class="text-bgColor">View User List</span>
+                            </button>
+                        </form>
+
+                        <form action="" method="post">
+                            <button
+                                class="bg-bgColor/80 rounded-full border-2 border-dashed border-cardData/50 px-3 py-2"
+                                type="submit" name="logout">
+                                <span class="text-bgWhite font-semibold text-sm">
+                                    Log Out
+                                </span>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- PROFIL BUTTON END -->
+
             <div class="flex items-center justify-start">
                 <span class="text-white font-semibold text-xl">
                     Coop<span class="text-textColor2">Link</span>
                 </span>
             </div>
 
-            <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center">
+            <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center cursor-pointer"
+                onclick="toogleModal()">
 
                 <span class="text-white font-semibold ml-5">
                     Admin
                 </span>
 
-                <div class="ml-3 w-7 h-7 rounded-full border border-bgWhite bg-cover bg-center"
-                    style="background-image: url(assets/test.jpg);">
+                <div class="ml-3 w-7 h-7 rounded-full bg-cover bg-center"
+                    style="background-image: url('../images/profilAdmin.svg');">
                 </div>
 
 
@@ -140,7 +172,17 @@ if( isset($_POST["del"]) ){
         </div>
     </div> -->
     </div>
+    <script>
+    let subModal = document.getElementById("subModal");
 
+    function toogleModal() {
+        if (subModal.style.display === "none") {
+            subModal.style.display = "block";
+        } else {
+            subModal.style.display = "none";
+        }
+    }
+    </script>
 
 </body>
 

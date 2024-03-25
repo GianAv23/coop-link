@@ -51,7 +51,11 @@ if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"])
 </head>
 
 <body>
-    <div class="w-screen min-h-screen bg-bgColor">
+    <div class="relative w-screen min-h-screen bg-bgColor">
+
+        <!-- ELLIIPSE START -->
+        <img class="absolute z-0 top-0 left-0" src="../assets/ellipse2.svg" alt="">
+        <!-- ELLIIPSE END -->
 
         <div class="w-screen min-h-screen flex flex-col justify-center py-10 px-8">
 
@@ -68,7 +72,7 @@ if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"])
             </div>
             <!-- HEADER END -->
 
-            <form class="flex flex-col gap-6 md:px-44 lg:px-64 xl:px-80" method="post" action="">
+            <form class="z-10 flex flex-col gap-6 md:px-44 lg:px-64 xl:px-80" method="post" action="">
 
                 <!-- USERNAME START -->
                 <div class=" flex flex-col gap-1">

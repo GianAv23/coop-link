@@ -41,7 +41,11 @@ if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) )
 
 <body>
 
-    <div class="bg-bgColor w-screen min-h-screen">
+    <div class="relative bg-bgColor w-screen h-screen">
+
+        <!-- ELLIIPSE START -->
+        <img class="absolute z-0 top-0 left-0" src="../assets/ellipse2.svg" alt="">
+        <!-- ELLIIPSE END -->
 
         <div class="w-screen min-h-screen flex flex-col justify-center px-10 md:px-32 lg:px-60 xl:px-96">
 
@@ -59,7 +63,7 @@ if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) )
             <!-- HEADER END -->
 
             <!-- FORM START -->
-            <form class="flex flex-col gap-6 mt-8" method="post">
+            <form class="z-10 flex flex-col gap-6 mt-8" method="post">
 
                 <!-- ERROR MESSAGE START -->
                 <?php if (!empty($error_message)) : ?>

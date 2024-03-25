@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+ font-family: "Figtree", sans-serif;
+ /* background-color: black; */
+}
+
+div.overflow-y-scroll {
+    scrollbar-width: none;
+}
+
+.content{
+    border-color: #385b2d;
+}
+
+.pokok{
+    .head{
+        color: #9FED81;
+    }
+}
+
+.wajib{
+    background-color: rgb(31, 31, 31, 0.8);
+    .head{
+        color: #9FED81;
+    }
+
+    .amount{
+        font-size: 22px;
+    }
+}
+
+.sukarela{
+    background-color: rgb(31, 31, 31, 0.8);
+    .head{
+        color: #9FED81;
+    }
+
+    .amount{
+        font-size: 22px;
+    }
+}
+
+.balance{
+    background-color: #385b2d;
+    background-image: url('/coop-link/images/bg\ hijau.png');
+    background-position: center;
+    background-size: cover;
+    
+    button{
+        background-color: #9FED81;
+    }
+}
+
+  /* Animasi fade in */
+  @keyframes fadeIn {
+      from {
+          opacity: 0;
+      }
+
+      to {
+          opacity: 1;
+      }
+  }
+
+  /* Animasi fade out */
+  @keyframes fadeOut {
+      from {
+          opacity: 1;
+      }
+
+      to {
+          opacity: 0;
+      }
+  }
+
+  /* Pengaturan tampilan awal */
+  #subModal {
+      display: none;
+      animation: fadeIn 0.5s ease;
+  }
+
+  /* Pengaturan tampilan setelah di-toggle */
+  #subModal.show {
+      display: block;
+      animation: fadeOut 0.5s ease;
+  }
+
+@media (max-width: 640px) {
+    .content{
+        background-image: url('/coop-link/images/TOPO\ BG\ mobile.png');
+        background-position: bottom;
+        background-size: cover;
+    }
+    
+}
+@media (min-width: 641px){
+    .wajib{
+        .amount{
+            font-size: 45px;
+        }
+    }
+
+    .sukarela{
+        .amount{
+            font-size: 45px;
+        }
+    }
+
+    .content{
+        background-image: url('/coop-link/images/BG\ web.png');
+        background-position: center;
+        background-size: cover;
+    }
+}

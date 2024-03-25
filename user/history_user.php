@@ -38,6 +38,9 @@ foreach($var as $ver){
                     textColor2: "#9FED81",
                     bgWhite: "#EEEEEE",
                     bgBlack: "#121212",
+                    verified: "#9FED81",
+                    reviewed: "#ffdd33",
+                    rejected: "#cc362b"
                 },
             }
         }
@@ -59,7 +62,8 @@ foreach($var as $ver){
             <div class="rounded-full border border-bgWhite py-1 px-1 flex items-center justify-center">
 
                 <span class="text-white font-semibold ml-5">
-                    <?= $namauser ?><!-- value nama nasabah -->
+                    <?= $namauser ?>
+                    <!-- value nama nasabah -->
                 </span>
 
                 <div class="ml-3 w-7 h-7 rounded-full border border-bgWhite bg-cover bg-center"
@@ -77,9 +81,8 @@ foreach($var as $ver){
                 <div class="flex flex-col p-6 gap-4 shrink-0">
                     <div class="mb-3 flex items-center gap-4">
                         <!-- untuk kembali ke home -->
-                        <button
-                            class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center" onclick="window.location.href='home_user.php'"><span
-                                class="font-medium text-base">
+                        <button class="rounded-full w-30 h-8 bg-bgLogo p-2 flex flex-row items-center justify-center"
+                            onclick="window.location.href='home_user.php'"><span class="font-medium text-base">
                                 <!-- onclick balik ke halaman home -->
                                 < Back </span></button>
                         <span class="font-normal text-bgWhite text-lg md:text-xl lg:text-2xl">History
@@ -91,6 +94,7 @@ foreach($var as $ver){
 
                         <!-- INI YANG DI LOOP PID -->
                         <?php foreach($var as $v) : ?>
+
                         <div
                             class="bg-cardData/50 rounded-3xl border border-bgWhite flex flex-col p-4 backdrop-blur-md">
 
@@ -98,29 +102,50 @@ foreach($var as $ver){
 
                                 <div class="flex flex-col">
                                     <span class="font-semibold text-bgWhite text-base md:pt-0">
-                                        <?= $v["kategori"] ?><!-- value kategori simpanan -->
+                                        <?= $v["kategori"] ?>
+                                        <!-- value kategori simpanan -->
                                     </span>
 
 
                                     <span class="font-semibold text-bgWhite/60 text-base">
-                                        <?= $v["tanggalTf"] ?><!-- value tanggal pembayaran -->
+                                        <?= $v["tanggalTf"] ?>
+                                        <!-- value tanggal pembayaran -->
                                     </span>
                                 </div>
 
                                 <div class="flex flex-col md:items-end">
                                     <span class="font-semibold text-bgWhite text-base md:pt-0">
-                                        <?= $v["jmlhTf"] ?><!-- value nominal pembayaran -->
+                                        <?= $v["jmlhTf"] ?>
+                                        <!-- value nominal pembayaran -->
                                     </span>
 
 
-                                    <span class="font-semibold text-textColor2 text-base">
-                                        <?= $v["statusTf"] ?><!-- value status pembayaran -->
+                                    <span
+                                        class="<?php echo getStatusColorClass($v["statusTf"]); ?> font-semibold text-base">
+                                        <?= $v["statusTf"] ?>
+                                        <!-- value status pembayaran -->
                                     </span>
                                 </div>
 
                             </div>
                         </div>
                         <?php endforeach; ?>
+                        <?php
+                        function getStatusColorClass($status) {
+                            switch ($status) {
+                                case 'Reviewed':
+                                    return 'text-reviewed';
+                                case 'Verified':
+                                    return 'text-verified';
+                                case 'Rejected':
+                                    return 'text-rejected';
+                                default:
+                                    return ''; // default color if status doesn't match
+                            }
+                        }
+                        ?>
+                        <!-- Function Ubah warna status pembayaran -->
+
                     </div>
                     <!-- INI YANG DI LOOP PID -->
                 </div>

@@ -28,6 +28,9 @@ $var = history_Admin();
                     textColor2: "#9FED81",
                     bgWhite: "#EEEEEE",
                     bgBlack: "#121212",
+                    verified: "#9FED81",
+                    reviewed: "#ffdd33",
+                    rejected: "#cc362b"
                 },
             }
         }
@@ -150,7 +153,8 @@ $var = history_Admin();
                                         </span>
 
 
-                                        <span class="font-semibold text-textColor2 text-base">
+                                        <span
+                                            class="<?php echo getStatusColorClass($v["statusTf"]); ?> font-semibold text-base">
                                             <?= $v["statusTf"] ?>
                                             <!-- value status pembayaran -->
                                         </span>
@@ -160,6 +164,21 @@ $var = history_Admin();
                             </div>
                         </div>
                         <?php endforeach; ?>
+                        <?php
+                        function getStatusColorClass($status) {
+                            switch ($status) {
+                                case 'Reviewed':
+                                    return 'text-reviewed';
+                                case 'Verified':
+                                    return 'text-verified';
+                                case 'Rejected':
+                                    return 'text-rejected';
+                                default:
+                                    return ''; // default color if status doesn't match
+                            }
+                        }
+                        ?>
+                        <!-- Function Ubah warna status pembayaran -->
                     </div>
                     <!-- INI YANG DI LOOP PID -->
                 </div>

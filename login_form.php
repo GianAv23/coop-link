@@ -52,13 +52,13 @@
                 <!-- BUTTON START -->
 
 
-                <a href="home_user.php"
+                <a href="user/home_user.php"
                     class="flex justify-center bg-textColor2 w-full py-2 rounded-full font-bold text-textColor hover:bg-textColor2/40 hover:text-textColor2">
                     <span>Nasabah</span>
                 </a>
 
 
-                <a href="home_admin.php"
+                <a href="admin/home_admin.php"
                     class="flex justify-center bg-textColor2 w-full py-2 rounded-full font-bold text-textColor hover:bg-textColor2/40 hover:text-textColor2">
                     <span>Admin</span>
                 </a>

@@ -1,6 +1,8 @@
 <?php
 require_once '../dbCOOPLINK.php';
 
+$error_message = '';
+
 if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"]) && isset($_POST["confirpass"]) ){
 
     if( $_POST["newpass"] === $_POST["confirpass"] ){
@@ -15,6 +17,7 @@ if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"])
         }
         
     } else {
+        $error_message = "Username and password are required";
         header("Location: change_pass.php");
         exit;
     }
@@ -69,6 +72,15 @@ if( isset($_POST["submit"]) && isset($_POST["name"]) && isset($_POST["newpass"])
             <!-- HEADER END -->
 
             <form class="flex flex-col gap-6 md:px-44 lg:px-64 xl:px-80" method="post" action="">
+
+                <!-- ERROR MESSAGE START -->
+                <?php if (!empty($error_message)) : ?>
+                <div id="error-message" class="flex p-3 justify-center bg-textColor2/30 rounded-lg">
+                    <span class="text-textColor2 font-medium text-sm flex text-center"><?= $error_message ?></span>
+                </div>
+                <?php endif; ?>
+                <!-- ERROR MESSAGE END -->
+
 
                 <!-- USERNAME START -->
                 <div class=" flex flex-col gap-1">

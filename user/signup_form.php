@@ -20,13 +20,16 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
         } else {
             // INI JALAN KETIKA ADA DATA YANG GK LENGKAP ATAU GK SESUAI
             // RETURN DARI FUNGSI registrasi_Nasabah --> "Berhasil" , "Simpanan Pokok tidak boleh nol" , "Password minimal 8 karakter" , "File bayar Error" , "File foto profile Error" , "Lengkapi datanya" (UNTUK YG INI KAYAK EMAIL / NAME / BIRTH DAY / ADDRESS NYA KOSONG)
-            header("Location: signup_form.php");
-            exit;
+
+            $error_message = $cek;
+            // header("Location: signup_form.php");
+            // exit;
         }
 
     } else {
-        header("Location: signup_form.php");
-        exit;
+        $error_message = $cek;
+        // header("Location: signup_form.php");
+        // exit;
     }
 
 }
@@ -78,6 +81,14 @@ if( isset($_POST["name"]) && isset($_POST["passw1"]) && isset($_POST["passw2"]) 
 
             <!-- FORM START -->
             <form class="flex flex-col gap-6 mt-8" method="post" enctype="multipart/form-data">
+
+                <!-- ERROR MESSAGE START -->
+                <?php if (!empty($error_message)) : ?>
+                <div id="error-message" class="flex p-3 justify-center bg-textColor2/30 rounded-lg">
+                    <span class="text-textColor2 font-medium text-sm flex text-center"><?= $error_message ?></span>
+                </div>
+                <?php endif; ?>
+                <!-- ERROR MESSAGE END -->
 
                 <!-- USERNAME START -->
                 <div class="flex flex-col gap-1">

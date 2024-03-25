@@ -2,19 +2,19 @@
 require_once '../dbCOOPLINK.php';
 if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) ){
 
-    // $cek = (cek_Admin($_POST["name"], $_POST["passw"]));
+    $cek = (cek_Admin($_POST["name"], $_POST["passw"]));
 
-    //if($cek === "Valid")
+  
     // header("Location: home_admin.php");
     //     exit;
 
-    if( cek_Admin($_POST["name"], $_POST["passw"]) ){
+    if($cek === "Valid") {
         header("Location: home_admin.php");
         exit;
     }else{
-        // ini nanti jadi $error_message = $cek; (tanpa header dan exit)
-        header("Location: login_form.php");
-        exit;
+        $error_message = $cek;
+        // header("Location: login_form.php");
+        // exit;
     }
 }
 ?>
@@ -66,6 +66,14 @@ if( isset($_POST["name"]) && isset($_POST["passw"]) && isset($_POST["submit"]) )
 
             <!-- FORM START -->
             <form class="flex flex-col gap-6 mt-8" method="post">
+
+                <!-- ERROR MESSAGE START -->
+                <?php if (!empty($error_message)) : ?>
+                <div id="error-message" class="flex p-3 justify-center bg-textColor2/30 rounded-lg">
+                    <span class="text-textColor2 font-medium text-sm flex text-center"><?= $error_message ?></span>
+                </div>
+                <?php endif; ?>
+                <!-- ERROR MESSAGE END -->
 
                 <!-- USERNAME START -->
                 <div class=" flex flex-col gap-1">

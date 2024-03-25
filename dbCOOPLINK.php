@@ -11,7 +11,7 @@ function cek_Admin($name, $pass){
     $name = strval($name);
     $pass = strval($pass);
     if( $name === "" && $pass === "" ){
-        return false;
+        return "Username and password are required";
     }
     global $kunci;
     $sql_CARI_ADMIN = "SELECT * FROM lecture_web.adminko";
@@ -20,10 +20,10 @@ function cek_Admin($name, $pass){
     while($data_db = $queryRes->fetch(PDO::FETCH_ASSOC)){
         if( $data_db["adminName"] == $name && password_verify($pass, $data_db["adminPass"])){
             $_SESSION["adminID"] = $data_db["adminID"];
-            return true;
+            return "Valid";
         }
     }
-    return false;
+    return "Invalid username or password";
 }
 
 function cek_Nasabah($name, $pass){
